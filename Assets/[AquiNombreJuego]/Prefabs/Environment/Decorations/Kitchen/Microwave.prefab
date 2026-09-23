@@ -1,0 +1,165 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7338551747643604631
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8507051477320059495, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e6003adf7ffc13a43b0191df99454ecc, type: 2}
+    - target: {fileID: -7511558181221131132, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e6003adf7ffc13a43b0191df99454ecc, type: 2}
+    - target: {fileID: -7128590729113655248, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_Name
+      value: MicroWave
+      objectReference: {fileID: 0}
+    - target: {fileID: -4897571225332529237, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_Name
+      value: Knobs
+      objectReference: {fileID: 0}
+    - target: {fileID: -3560115405456852193, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e6003adf7ffc13a43b0191df99454ecc, type: 2}
+    - target: {fileID: -2192520051671653786, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.96188045
+      objectReference: {fileID: 0}
+    - target: {fileID: -2192520051671653786, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.0015261392
+      objectReference: {fileID: 0}
+    - target: {fileID: -2192520051671653786, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.27344462
+      objectReference: {fileID: 0}
+    - target: {fileID: -2192520051671653786, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0034369263
+      objectReference: {fileID: 0}
+    - target: {fileID: -2192520051671653786, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.276
+      objectReference: {fileID: 0}
+    - target: {fileID: -2192520051671653786, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -31.738
+      objectReference: {fileID: 0}
+    - target: {fileID: -2192520051671653786, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.331
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_Name
+      value: Microwave
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837668248745836978, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e6003adf7ffc13a43b0191df99454ecc, type: 2}
+    - target: {fileID: 3209348867686757317, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3885373034760308641, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e6003adf7ffc13a43b0191df99454ecc, type: 2}
+    - target: {fileID: 6609019395777606506, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e6003adf7ffc13a43b0191df99454ecc, type: 2}
+    - target: {fileID: 8156932498134120497, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_Name
+      value: MicrowaveDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 9126932762892500256, guid: a92fc6e5b12574245a619aff5f84adf5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a92fc6e5b12574245a619aff5f84adf5, type: 3}

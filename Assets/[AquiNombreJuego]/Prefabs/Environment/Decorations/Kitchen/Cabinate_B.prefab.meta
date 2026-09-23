@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 043ff54150daaa54cb6cb04d08a0e437
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Decorations/Kitchen/Cabinate_B.prefab
+  uploadId: 853928

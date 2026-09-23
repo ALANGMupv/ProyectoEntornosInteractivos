@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 31ae9903d705c9748b1282175153b7e6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Settings/LevelA Lighting Settings.lighting
+  uploadId: 853928

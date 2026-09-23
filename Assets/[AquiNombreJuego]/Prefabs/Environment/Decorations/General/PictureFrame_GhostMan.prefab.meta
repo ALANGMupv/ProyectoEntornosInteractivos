@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 36607e53e1c1e164a8749d7c65ed673a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Decorations/General/PictureFrame_GhostMan.prefab
+  uploadId: 853928

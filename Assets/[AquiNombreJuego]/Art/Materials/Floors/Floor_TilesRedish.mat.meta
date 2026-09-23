@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b27874f6585173e4c8fe842a17ceebf2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Art/Materials/Floors/Floor_TilesRedish.mat
+  uploadId: 853928

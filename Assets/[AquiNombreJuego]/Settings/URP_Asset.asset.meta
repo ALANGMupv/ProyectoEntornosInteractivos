@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3d05c7b7a6d4c2846878970b4d86ab11
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Settings/URP_Asset.asset
+  uploadId: 853928

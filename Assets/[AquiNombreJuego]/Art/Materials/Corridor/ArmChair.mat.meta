@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bffd0b2460338ab4cb8f7ae0c21617c5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Art/Materials/Corridor/ArmChair.mat
+  uploadId: 853928

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e27a3e2f84809914fa5bf3a7ac14ce9f
+timeCreated: 1473686037
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Art/Materials/VFX/DustMote.mat
+  uploadId: 853928

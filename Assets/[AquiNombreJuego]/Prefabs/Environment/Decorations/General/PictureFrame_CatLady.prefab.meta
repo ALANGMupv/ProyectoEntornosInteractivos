@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: fd0a0afe39553f8448791941be9f6b22
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Decorations/General/PictureFrame_CatLady.prefab
+  uploadId: 853928

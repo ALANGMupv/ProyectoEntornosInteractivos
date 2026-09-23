@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ea4636a3bfb9118448ee133a5522b347
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Rooms/Room Blanks/Room BayWindow.prefab
+  uploadId: 853928

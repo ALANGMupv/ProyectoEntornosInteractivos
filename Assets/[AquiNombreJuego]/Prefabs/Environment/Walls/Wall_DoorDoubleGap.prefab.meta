@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7d3e50366154100459c17a5a07cc4f7a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Walls/Wall_DoorDoubleGap.prefab
+  uploadId: 853928

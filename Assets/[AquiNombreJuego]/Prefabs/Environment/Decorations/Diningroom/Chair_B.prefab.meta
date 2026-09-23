@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 63d1dcb66a43f6048b46981a4abc3fff
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Decorations/Diningroom/Chair_B.prefab
+  uploadId: 853928

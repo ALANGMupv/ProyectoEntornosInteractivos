@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f0361f9754cb4b64ab7c93661e5fb5a6
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Decorations/Kitchen/Pot.prefab
+  uploadId: 853928

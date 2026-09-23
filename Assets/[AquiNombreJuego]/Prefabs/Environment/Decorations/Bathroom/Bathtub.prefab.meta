@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 831774c85f3f8fd408342fdbbef7b942
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Decorations/Bathroom/Bathtub.prefab
+  uploadId: 853928

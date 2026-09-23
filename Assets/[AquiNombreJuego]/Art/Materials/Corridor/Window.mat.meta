@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5d7f4ca07121e414288c4908a4803bed
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Art/Materials/Corridor/Window.mat
+  uploadId: 853928

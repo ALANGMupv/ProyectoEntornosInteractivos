@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c68b0496eaa4e75479451d4c408f629c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Decorations/Bedroom/Bedside_Table.prefab
+  uploadId: 853928

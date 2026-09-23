@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 14d4ff852c316e9498bbc03bbd024b7a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Walls/Wall_Window_Tripple.prefab
+  uploadId: 853928

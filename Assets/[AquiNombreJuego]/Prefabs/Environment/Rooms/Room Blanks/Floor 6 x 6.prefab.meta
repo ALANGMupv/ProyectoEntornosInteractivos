@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 14ed218a385b38a4e82835f7b21c1911
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Rooms/Room Blanks/Floor 6
+    x 6.prefab
+  uploadId: 853928

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d7e2196a7a474e74fba16ada321c14f2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Art/Materials/Bathroom/BathtubLeg.mat
+  uploadId: 853928

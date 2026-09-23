@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e580b426991b658419b83bfc3afe5cb8
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Decorations/Kitchen/RugKitchen.prefab
+  uploadId: 853928

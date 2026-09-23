@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f69f12e207e387146a17b239bb69e43e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Decorations/Bedroom/Rug_Bedroom.prefab
+  uploadId: 853928

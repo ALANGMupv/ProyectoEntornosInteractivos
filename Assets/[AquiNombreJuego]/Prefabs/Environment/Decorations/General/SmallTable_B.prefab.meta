@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 074eeb70885c4c34a9cc1af18a3f3ab2
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Decorations/General/SmallTable_B.prefab
+  uploadId: 853928

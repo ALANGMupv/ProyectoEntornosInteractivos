@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c126d90fa1fe4ac4abcc6e249c724bf0
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Levels/Level A.prefab
+  uploadId: 853928

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ce052bff5af3492479ed441e225667a6
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Decorations/Diningroom/Table_Middle.prefab
+  uploadId: 853928

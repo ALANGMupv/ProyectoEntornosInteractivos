@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c95ab41648a6f6b47860b4cba2b9bf7a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Rooms/Room_Finish.prefab
+  uploadId: 853928

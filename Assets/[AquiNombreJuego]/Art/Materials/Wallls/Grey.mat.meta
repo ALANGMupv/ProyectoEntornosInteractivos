@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a477a99b7374b6443b8227309a651d81
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Art/Materials/Wallls/Grey.mat
+  uploadId: 853928

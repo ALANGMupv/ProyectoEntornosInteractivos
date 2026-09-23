@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 61b10ea70ed6e1349b5c364cb79adb4e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Art/Materials/Kitchen/Cabinates.mat
+  uploadId: 853928

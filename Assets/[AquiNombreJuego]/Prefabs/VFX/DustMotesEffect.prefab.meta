@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5ca4c580b3888314581688fa46fb142d
+timeCreated: 1473946479
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/VFX/DustMotesEffect.prefab
+  uploadId: 853928

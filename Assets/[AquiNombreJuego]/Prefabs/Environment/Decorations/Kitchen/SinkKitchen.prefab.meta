@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7faefaa25b53b314fb4a9876844c49aa
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Decorations/Kitchen/SinkKitchen.prefab
+  uploadId: 853928

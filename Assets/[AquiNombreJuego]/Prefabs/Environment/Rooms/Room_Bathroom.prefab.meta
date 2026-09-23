@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 771f1f4d62d271b4e85ab882a5f19a80
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Rooms/Room_Bathroom.prefab
+  uploadId: 853928

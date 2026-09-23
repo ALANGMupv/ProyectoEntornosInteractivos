@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 83c13e70b8df63a4482dbe63bdc49d85
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Decorations/General/PictureFrame_Curvy.prefab
+  uploadId: 853928

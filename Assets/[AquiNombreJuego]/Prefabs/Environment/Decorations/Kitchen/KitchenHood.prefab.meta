@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 90b53260d1599844b80ab1eadf1eea02
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Decorations/Kitchen/KitchenHood.prefab
+  uploadId: 853928

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b375857689bc8c749a819e002181bfc5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Art/Materials/Floors/Floor_TIlesGreen.mat
+  uploadId: 853928

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b1f3ad617a8b99e499ddbe1ae47e48ae
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Decorations/Bathroom/Sink.prefab
+  uploadId: 853928

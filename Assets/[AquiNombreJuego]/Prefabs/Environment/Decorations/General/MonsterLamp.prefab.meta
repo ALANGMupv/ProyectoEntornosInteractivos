@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c4cfdd186096c1842a81a4293d1b80da
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Decorations/General/MonsterLamp.prefab
+  uploadId: 853928

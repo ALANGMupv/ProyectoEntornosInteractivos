@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 582e59bcc14a52f4c8e99a3c4772b89b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Decorations/General/PictureFrame_Wolf.prefab
+  uploadId: 853928

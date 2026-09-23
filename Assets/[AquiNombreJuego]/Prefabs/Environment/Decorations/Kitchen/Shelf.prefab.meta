@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 96704b6b2d5bd1f4eb5eaeef8d3bb993
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Decorations/Kitchen/Shelf.prefab
+  uploadId: 853928

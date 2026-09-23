@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4cabd60456262a046a3ea78ab65330de
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Decorations/General/PictureFrame_MrMan.prefab
+  uploadId: 853928

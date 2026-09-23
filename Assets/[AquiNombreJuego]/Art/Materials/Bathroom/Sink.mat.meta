@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7dc883052ccb59842a9c6b10113e1470
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Art/Materials/Bathroom/Sink.mat
+  uploadId: 853928

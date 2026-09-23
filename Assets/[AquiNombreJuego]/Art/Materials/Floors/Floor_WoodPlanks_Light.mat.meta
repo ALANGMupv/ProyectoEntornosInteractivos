@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5b97c3c88138b954291a448f87d9b5b2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Art/Materials/Floors/Floor_WoodPlanks_Light.mat
+  uploadId: 853928

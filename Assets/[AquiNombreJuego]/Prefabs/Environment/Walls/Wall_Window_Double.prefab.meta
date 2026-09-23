@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2e6dcacda07b9c943972a5143ee1b579
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Walls/Wall_Window_Double.prefab
+  uploadId: 853928

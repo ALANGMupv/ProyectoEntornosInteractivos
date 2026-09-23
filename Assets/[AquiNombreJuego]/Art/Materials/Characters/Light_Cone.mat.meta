@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 98a5d7f03b88cef44932b3206c7bd8db
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Art/Materials/Characters/Light_Cone.mat
+  uploadId: 853928

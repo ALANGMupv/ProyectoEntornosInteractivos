@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e99bf68ee4e28ea4cbf3baeee5390cb3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Art/Materials/Characters/Ivan.mat
+  uploadId: 853928

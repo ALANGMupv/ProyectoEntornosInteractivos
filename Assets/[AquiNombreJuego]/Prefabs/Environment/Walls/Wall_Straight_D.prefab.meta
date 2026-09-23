@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5871d30b7751ac04bb8d91dd3ac4cdcc
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143848
+  packageName: '3D Stealth Game: Haunted House'
+  packageVersion: 4.1
+  assetPath: Assets/_3DStealthGame/Prefabs/Environment/Walls/Wall_Straight_D.prefab
+  uploadId: 853928
