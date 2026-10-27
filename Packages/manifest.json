@@ -1,5 +1,6 @@
 {
-  "dependencies": {
+    "dependencies": {
+    "com.ptc.vuforia.engine": "file:com.ptc.vuforia.engine-10.17.4.tgz",
     "com.unity.ai.navigation": "2.0.14",
     "com.unity.cinemachine": "3.1.4",
     "com.unity.formats.fbx": "5.1.6",
