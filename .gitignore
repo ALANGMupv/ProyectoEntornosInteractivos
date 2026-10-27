@@ -48,3 +48,6 @@ sysinfo.txt
 *.apk
 *.aab
 *.unitypackage
+
+# Vuforia (cada uno lo importa en local, pesa >100 MB)
+*.tgz
