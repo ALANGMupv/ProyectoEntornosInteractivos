@@ -30,7 +30,12 @@ public class ControlFurgoneta : MonoBehaviour
     public float zonaMuerta = 0.15f;
 
     InputAction m_Mover;
+    InputAction m_Reiniciar;
     float m_Velocidad;
+
+    // Locales al mapa: en RA el mapa se mueve con el Image Target
+    Vector3 m_PosicionInicial;
+    Quaternion m_RotacionInicial;
 
     void Awake()
     {
@@ -43,14 +48,45 @@ public class ControlFurgoneta : MonoBehaviour
         m_Mover.AddCompositeBinding("2DVector")
             .With("Up", "<Keyboard>/upArrow").With("Down", "<Keyboard>/downArrow")
             .With("Left", "<Keyboard>/leftArrow").With("Right", "<Keyboard>/rightArrow");
+
+        // Tecla R para reiniciar en el editor (en el móvil se usa el botón, que llama a Reiniciar())
+        m_Reiniciar = new InputAction("Reiniciar", InputActionType.Button, "<Keyboard>/r");
+
+        m_PosicionInicial = transform.localPosition;
+        m_RotacionInicial = transform.localRotation;
     }
 
-    void OnEnable() => m_Mover.Enable();
-    void OnDisable() => m_Mover.Disable();
-    void OnDestroy() => m_Mover.Dispose();
+    void OnEnable()
+    {
+        m_Mover.Enable();
+        m_Reiniciar.Enable();
+    }
+
+    void OnDisable()
+    {
+        m_Mover.Disable();
+        m_Reiniciar.Disable();
+    }
+
+    void OnDestroy()
+    {
+        m_Mover.Dispose();
+        m_Reiniciar.Dispose();
+    }
+
+    /// <summary>Devuelve la furgoneta a su posición y rotación iniciales, parada.</summary>
+    public void Reiniciar()
+    {
+        transform.localPosition = m_PosicionInicial;
+        transform.localRotation = m_RotacionInicial;
+        m_Velocidad = 0f;
+    }
 
     void Update()
     {
+        if (m_Reiniciar.WasPressedThisFrame())
+            Reiniciar();
+
         if (camara == null && Camera.main != null)
             camara = Camera.main.transform;
         if (camara == null)
