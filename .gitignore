@@ -51,3 +51,6 @@ sysinfo.txt
 
 # Vuforia (cada uno lo importa en local, pesa >100 MB)
 *.tgz
+
+# Datos que genera Vuforia al darle a Play en el editor
+[Qq][Cc][Aa][Rr]/
