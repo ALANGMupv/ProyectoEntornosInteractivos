@@ -6,6 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Escenas/MenuPrincipal.unity
+    guid: 661821aa5709d8741bacc3142a676dca
+  - enabled: 1
+    path: Assets/Escenas/Escena control de boorgoneta RA.unity
+    guid: ca101602d7f535140853fc63db09cc36
+  - enabled: 1
+    path: Assets/Escenas/Trailer.unity
+    guid: 83ee61efefb07904ea3db80b85a15483
+  - enabled: 1
+    path: Assets/Escenas/Instrucciones.unity
+    guid: 9f674a701654827448968b19fff3c71f
+  - enabled: 1
+    path: Assets/Escenas/Modelos3D.unity
+    guid: f0843287090d3044e97cd7351544c3f3
+  - enabled: 1
     path: Assets/[AquiNombreJuego]/Tutorial_Demo/Demo_Scenes/MainMenu.unity
     guid: e0afa25d30aeb924895fa68e23be7af2
   m_configObjects: {}
