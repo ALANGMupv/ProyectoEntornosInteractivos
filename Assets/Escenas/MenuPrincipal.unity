@@ -3842,7 +3842,7 @@ MonoBehaviour:
   aviso: {fileID: 836994480}
   preview:
     nombre: Preview
-    escena: Escena control de boorgoneta RA
+    escena: EscenaControlBoorgonetaRA
     imagenTarget: {fileID: 2800000, guid: 2b0b0e84186448ea8607acdcea93d04f, type: 3}
   trailer:
     nombre: Trailer
