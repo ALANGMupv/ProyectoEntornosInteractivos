@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Escenas/Modelos3D.unity
     guid: f0843287090d3044e97cd7351544c3f3
-  - enabled: 1
+  - enabled: 0
     path: Assets/[AquiNombreJuego]/Tutorial_Demo/Demo_Scenes/MainMenu.unity
     guid: e0afa25d30aeb924895fa68e23be7af2
   m_configObjects: {}
