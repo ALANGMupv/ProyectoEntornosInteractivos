@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="prac2" size="1.000000 1.777778" />
+    <ImageTarget name="pixar-toystory" size="1.000000 1.166287" />
+    <ImageTarget name="pickaboo-modelos3d" size="1.000000 0.562500" />
+    <ImageTarget name="pickaboo-instrucciones" size="1.000000 0.562500" />
+    <ImageTarget name="pickaboo-trailer" size="1.000000 0.562500" />
+    <ImageTarget name="pickaboo-preview" size="1.000000 0.562500" />
+    <ImageTarget name="joker" size="1.000000 1.426758" />
+    <ImageTarget name="tcg-card-back" size="1.000000 1.396970" />
+    <ImageTarget name="carrefourjoven" size="1.000000 0.666667" />
+    <ImageTarget name="bonomadrid" size="1.000000 0.634581" />
+  </Tracking>
+</QCARConfig>
