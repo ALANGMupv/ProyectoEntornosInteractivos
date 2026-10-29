@@ -3842,20 +3842,20 @@ MonoBehaviour:
   aviso: {fileID: 836994480}
   preview:
     nombre: Preview
-    escena: EscenaControlBoorgonetaRA
-    imagenTarget: {fileID: 2800000, guid: 2b0b0e84186448ea8607acdcea93d04f, type: 3}
+    escena: Preview
+    imagenTarget: {fileID: 2800000, guid: 21d78ee2e6a5a7945bbc195dbf214791, type: 3}
   trailer:
     nombre: Trailer
     escena: Trailer
-    imagenTarget: {fileID: 0}
+    imagenTarget: {fileID: 2800000, guid: ad1c7217853d56c4cbbe51d86170b16b, type: 3}
   instrucciones:
     nombre: Instrucciones
     escena: Instrucciones
-    imagenTarget: {fileID: 0}
+    imagenTarget: {fileID: 2800000, guid: 5e7cd3de55ae1b14e8f5b6ddedd05408, type: 3}
   modelos3D:
     nombre: Modelos 3D
     escena: Modelos3D
-    imagenTarget: {fileID: 0}
+    imagenTarget: {fileID: 2800000, guid: c7f7d4c036646d941b4c7c39403e7f43, type: 3}
   botonJuego: {fileID: 1413383606}
   juegoDesbloqueado: 0
   juego:

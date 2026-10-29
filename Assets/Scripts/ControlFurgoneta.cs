@@ -29,9 +29,21 @@ public class ControlFurgoneta : MonoBehaviour
     [Tooltip("Por debajo de este valor el joystick se considera suelto.")]
     public float zonaMuerta = 0.15f;
 
+    [Header("Carretera")]
+    [Tooltip("Si está activo, la furgoneta solo puede moverse por encima de los colliders de la capa de carretera.")]
+    public bool limitarACarretera;
+    [Tooltip("Capa de los colliders de la carretera. Si se deja en Nothing usa la capa \"Carretera\".")]
+    public LayerMask capaCarretera;
+    [Tooltip("Distancia por delante del centro que también tiene que estar sobre la carretera (el morro), en unidades del mapa.")]
+    public float margenFrontal = 0.01f;
+    [Tooltip("Altura desde la que se lanza el rayo hacia abajo para buscar la carretera, en unidades del mapa.")]
+    public float alturaRayo = 0.05f;
+
     InputAction m_Mover;
     InputAction m_Reiniciar;
     float m_Velocidad;
+    // Parada en el borde de la carretera: deja girar sin avanzar para poder salir
+    bool m_Bloqueada;
 
     // Locales al mapa: en RA el mapa se mueve con el Image Target
     Vector3 m_PosicionInicial;
@@ -54,6 +66,9 @@ public class ControlFurgoneta : MonoBehaviour
 
         m_PosicionInicial = transform.localPosition;
         m_RotacionInicial = transform.localRotation;
+
+        if (capaCarretera == 0)
+            capaCarretera = LayerMask.GetMask("Carretera");
     }
 
     void OnEnable()
@@ -80,6 +95,7 @@ public class ControlFurgoneta : MonoBehaviour
         transform.localPosition = m_PosicionInicial;
         transform.localRotation = m_RotacionInicial;
         m_Velocidad = 0f;
+        m_Bloqueada = false;
     }
 
     void Update()
@@ -110,8 +126,8 @@ public class ControlFurgoneta : MonoBehaviour
             float velocidadObjetivo = velocidadMaxima * intensidad * Mathf.Lerp(0.35f, 1f, (alineacion + 1f) * 0.5f);
             m_Velocidad = Mathf.MoveTowards(m_Velocidad, velocidadObjetivo, aceleracion * Time.deltaTime);
 
-            // Como un coche: solo gira si se está moviendo
-            float factorGiro = Mathf.Clamp01(m_Velocidad / (velocidadMaxima * 0.3f));
+            // Como un coche: solo gira si se está moviendo (o si está parada en el borde, para poder salir)
+            float factorGiro = m_Bloqueada ? 1f : Mathf.Clamp01(m_Velocidad / (velocidadMaxima * 0.3f));
             transform.rotation = Quaternion.RotateTowards(transform.rotation, objetivo,
                 velocidadGiro * factorGiro * Time.deltaTime);
         }
@@ -120,7 +136,32 @@ public class ControlFurgoneta : MonoBehaviour
             m_Velocidad = Mathf.MoveTowards(m_Velocidad, 0f, frenado * Time.deltaTime);
         }
 
-        transform.position += transform.forward * (m_Velocidad * escala * Time.deltaTime);
+        Vector3 desplazamiento = transform.forward * (m_Velocidad * escala * Time.deltaTime);
+        if (!limitarACarretera)
+        {
+            transform.position += desplazamiento;
+            return;
+        }
+
+        // En RA el mapa se mueve con el target: actualizar los colliders antes de lanzar rayos
+        Physics.SyncTransforms();
+        Vector3 morro = transform.position + desplazamiento + transform.forward * (margenFrontal * escala);
+        m_Bloqueada = m_Velocidad > 0f && !BuscarCarretera(morro, arriba, escala, out _);
+        if (m_Bloqueada)
+            m_Velocidad = 0f;
+        else
+            transform.position += desplazamiento;
+
+        // Seguir la altura de la carretera (cuestas, baches del modelo)
+        if (BuscarCarretera(transform.position, arriba, escala, out var apoyo))
+            transform.position = apoyo.point;
+    }
+
+    bool BuscarCarretera(Vector3 punto, Vector3 arriba, float escala, out RaycastHit impacto)
+    {
+        float altura = alturaRayo * escala;
+        return Physics.Raycast(punto + arriba * altura, -arriba, out impacto, altura * 2f,
+            capaCarretera, QueryTriggerInteraction.Ignore);
     }
 
     /// <summary>
