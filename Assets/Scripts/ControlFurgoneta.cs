@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
@@ -39,11 +39,17 @@ public class ControlFurgoneta : MonoBehaviour
     [Tooltip("Altura desde la que se lanza el rayo hacia abajo para buscar la carretera, en unidades del mapa.")]
     public float alturaRayo = 0.05f;
 
+    [Header("Sprint 02 (opcional, solo escena iluminada)")]
+    public bool mejorarApoyo;
+    public float semiancho = 0.006f;
+    public float margenTrasero = 0.01f;
+
     InputAction m_Mover;
     InputAction m_Reiniciar;
     float m_Velocidad;
     // Parada en el borde de la carretera: deja girar sin avanzar para poder salir
     bool m_Bloqueada;
+    bool m_EsperarSoltarControl;
 
     // Locales al mapa: en RA el mapa se mueve con el Image Target
     Vector3 m_PosicionInicial;
@@ -96,13 +102,22 @@ public class ControlFurgoneta : MonoBehaviour
         transform.localRotation = m_RotacionInicial;
         m_Velocidad = 0f;
         m_Bloqueada = false;
+        m_EsperarSoltarControl = mejorarApoyo;
     }
 
     void Update()
     {
         if (m_Reiniciar.WasPressedThisFrame())
+        {
             Reiniciar();
+            return;
+        }
 
+        MoverConEntrada(m_Mover.ReadValue<Vector2>(), Time.deltaTime);
+    }
+
+    void MoverConEntrada(Vector2 entrada, float deltaTime)
+    {
         if (camara == null && Camera.main != null)
             camara = Camera.main.transform;
         if (camara == null)
@@ -111,10 +126,16 @@ public class ControlFurgoneta : MonoBehaviour
         Transform referenciaSuelo = suelo != null ? suelo : transform.parent;
         Vector3 arriba = referenciaSuelo != null ? referenciaSuelo.up : Vector3.up;
         // En RA el mapa se puede escalar: las velocidades se expresan en unidades del mapa
-        float escala = referenciaSuelo != null ? referenciaSuelo.lossyScale.x : 1f;
+        float escala = referenciaSuelo != null ? Mathf.Abs(referenciaSuelo.lossyScale.x) : 1f;
 
-        Vector2 entrada = Vector2.ClampMagnitude(m_Mover.ReadValue<Vector2>(), 1f);
+        entrada = Vector2.ClampMagnitude(entrada, 1f);
         float intensidad = entrada.magnitude;
+        // Tras reiniciar, una pulsación todavía mantenida no debe sacar el coche de la salida.
+        if (m_EsperarSoltarControl)
+        {
+            if (intensidad > zonaMuerta) return;
+            m_EsperarSoltarControl = false;
+        }
 
         if (intensidad > zonaMuerta)
         {
@@ -124,19 +145,19 @@ public class ControlFurgoneta : MonoBehaviour
             // Cuanto más de espaldas a la dirección pedida, más lento va, para que trace la curva cerrada
             float alineacion = Vector3.Dot(transform.forward, direccion);
             float velocidadObjetivo = velocidadMaxima * intensidad * Mathf.Lerp(0.35f, 1f, (alineacion + 1f) * 0.5f);
-            m_Velocidad = Mathf.MoveTowards(m_Velocidad, velocidadObjetivo, aceleracion * Time.deltaTime);
+            m_Velocidad = Mathf.MoveTowards(m_Velocidad, velocidadObjetivo, aceleracion * deltaTime);
 
             // Como un coche: solo gira si se está moviendo (o si está parada en el borde, para poder salir)
             float factorGiro = m_Bloqueada ? 1f : Mathf.Clamp01(m_Velocidad / (velocidadMaxima * 0.3f));
             transform.rotation = Quaternion.RotateTowards(transform.rotation, objetivo,
-                velocidadGiro * factorGiro * Time.deltaTime);
+                velocidadGiro * factorGiro * deltaTime);
         }
         else
         {
-            m_Velocidad = Mathf.MoveTowards(m_Velocidad, 0f, frenado * Time.deltaTime);
+            m_Velocidad = Mathf.MoveTowards(m_Velocidad, 0f, frenado * deltaTime);
         }
 
-        Vector3 desplazamiento = transform.forward * (m_Velocidad * escala * Time.deltaTime);
+        Vector3 desplazamiento = transform.forward * (m_Velocidad * escala * deltaTime);
         if (!limitarACarretera)
         {
             transform.position += desplazamiento;
@@ -145,6 +166,30 @@ public class ControlFurgoneta : MonoBehaviour
 
         // En RA el mapa se mueve con el target: actualizar los colliders antes de lanzar rayos
         Physics.SyncTransforms();
+        if (mejorarApoyo)
+        {
+            // Subpasos: evita atravesar un borde cuando baja la tasa de fotogramas.
+            int pasos = Mathf.Max(1, Mathf.CeilToInt(desplazamiento.magnitude / Mathf.Max(0.001f * escala, 0.00001f)));
+            Vector3 paso = desplazamiento / pasos;
+            m_Bloqueada = false;
+            for (int i = 0; i < pasos; i++)
+            {
+                Vector3 siguiente = transform.position + paso;
+                if (!ApoyoCompleto(siguiente, arriba, escala) &&
+                    !PuedeRecuperarApoyo(transform.position, siguiente, arriba, escala))
+                {
+                    m_Bloqueada = true;
+                    m_Velocidad = 0f;
+                    // Conservar el giro permite recuperar la dirección hacia la carretera.
+                    // Restaurarlo aquí bloqueaba el vehículo al pedir un giro junto al borde.
+                    break;
+                }
+                transform.position = siguiente;
+            }
+            if (BuscarCarretera(transform.position, arriba, escala, out var contacto))
+                transform.position = contacto.point;
+            return;
+        }
         Vector3 morro = transform.position + desplazamiento + transform.forward * (margenFrontal * escala);
         m_Bloqueada = m_Velocidad > 0f && !BuscarCarretera(morro, arriba, escala, out _);
         if (m_Bloqueada)
@@ -155,6 +200,35 @@ public class ControlFurgoneta : MonoBehaviour
         // Seguir la altura de la carretera (cuestas, baches del modelo)
         if (BuscarCarretera(transform.position, arriba, escala, out var apoyo))
             transform.position = apoyo.point;
+    }
+
+    bool ApoyoCompleto(Vector3 centro, Vector3 arriba, float escala)
+    {
+        // Restringir el centro y el ancho de apoyo a la calzada. Exigir también
+        // las esquinas del morro/trasera impedía tomar curvas y recuperar el giro.
+        if (!BuscarCarretera(centro, arriba, escala, out _)) return false;
+        Vector3 lateral = transform.right * (semiancho * escala);
+        return BuscarCarretera(centro - lateral, arriba, escala, out _) &&
+               BuscarCarretera(centro + lateral, arriba, escala, out _);
+    }
+
+    bool PuedeRecuperarApoyo(Vector3 actual, Vector3 siguiente, Vector3 arriba, float escala)
+    {
+        // Si un giro deja un lateral sobre el margen, permitir volver hacia dentro.
+        // No autorizar salir desde una posición apoyada ni atravesar zonas sin calzada.
+        if (ApoyoCompleto(actual, arriba, escala)) return false;
+        Vector3 avance = siguiente - actual;
+        if (avance.sqrMagnitude < 1e-14f) return false;
+        Vector3 direccion = avance.normalized;
+        float paso = Mathf.Max(.001f * escala, .00001f);
+        float alcance = Mathf.Max(semiancho * 2f, .002f) * escala;
+        for (float distancia = 0f; distancia <= alcance + paso * .5f; distancia += paso)
+        {
+            Vector3 punto = siguiente + direccion * distancia;
+            if (!BuscarCarretera(punto, arriba, escala, out _)) return false;
+            if (ApoyoCompleto(punto, arriba, escala)) return true;
+        }
+        return false;
     }
 
     bool BuscarCarretera(Vector3 punto, Vector3 arriba, float escala, out RaycastHit impacto)
