@@ -23,8 +23,7 @@ public class MenuPrincipal : MonoBehaviour
     public bool juegoDesbloqueado;
     public AccesoTarget juego;
 
-    // TODO (idea del hi-fi): el fondo será la carretera y el bosque, y "estaría guapísimo que fuera animado"
-    // (p. ej. un desplazamiento lento o parallax). De momento es blanco porque aún no tenemos la imagen.
+    // Color liso detrás de todo. La animación (fachada de noche, niebla, viento y rayos) está en FondoAnimado.
     public Image fondo;
 
     void Start()
