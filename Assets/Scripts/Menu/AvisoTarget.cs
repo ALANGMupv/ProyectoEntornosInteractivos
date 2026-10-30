@@ -24,6 +24,9 @@ public class AvisoTarget : MonoBehaviour
     public TMP_Text textoTarget;
     public RawImage miniaturaTarget;
 
+    /// <summary>Se lanza al cerrar el aviso con la X (la transición de la puerta lo usa para salir de la casa).</summary>
+    public event System.Action alCerrar;
+
     AccesoTarget m_Acceso;
 
     public void Mostrar(AccesoTarget acceso)
@@ -47,5 +50,9 @@ public class AvisoTarget : MonoBehaviour
         SceneManager.LoadScene(m_Acceso.escena);
     }
 
-    public void Cerrar() => gameObject.SetActive(false);
+    public void Cerrar()
+    {
+        gameObject.SetActive(false);
+        alCerrar?.Invoke();
+    }
 }
