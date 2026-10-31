@@ -13,8 +13,26 @@ public class SelectorModelos : MonoBehaviour
     public Color colorSeleccionado = new Color32(80, 0, 22, 255);
     public Color colorNormal = new Color32(208, 208, 208, 255);
 
+    private Vector3[] posicionesIniciales;
+    private Quaternion[] rotacionesIniciales;
+    private Vector3[] escalasIniciales;
+
     void Start()
     {
+        // Guardar el estado original de cada modelo
+        posicionesIniciales = new Vector3[modelos.Length];
+        rotacionesIniciales = new Quaternion[modelos.Length];
+        escalasIniciales = new Vector3[modelos.Length];
+
+        for (int i = 0; i < modelos.Length; i++)
+        {
+            Transform modelo = modelos[i].transform;
+
+            posicionesIniciales[i] = modelo.localPosition;
+            rotacionesIniciales[i] = modelo.localRotation;
+            escalasIniciales[i] = modelo.localScale;
+        }
+
         SeleccionarModelo(0);
     }
 
@@ -23,6 +41,14 @@ public class SelectorModelos : MonoBehaviour
         if (indice < 0 || indice >= modelos.Length)
             return;
 
+        // Restaurar posicion, rotacion y escala originales
+        Transform modeloSeleccionado = modelos[indice].transform;
+
+        modeloSeleccionado.localPosition = posicionesIniciales[indice];
+        modeloSeleccionado.localRotation = rotacionesIniciales[indice];
+        modeloSeleccionado.localScale = escalasIniciales[indice];
+
+        // Mostrar solo el modelo seleccionado
         for (int i = 0; i < modelos.Length; i++)
         {
             modelos[i].SetActive(i == indice);
