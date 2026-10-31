@@ -5,14 +5,13 @@ using Vuforia;
 public class DeteccionModelos3D : MonoBehaviour
 {
     public GameObject panelSeleccionModelos;
+    public GameObject panelAvisoTarget;
 
     private ObserverBehaviour observador;
 
     void Start()
     {
         observador = GetComponent<ObserverBehaviour>();
-
-        panelSeleccionModelos.SetActive(false);
 
         observador.OnTargetStatusChanged += CambiarEstadoTarget;
         ActualizarEstado(observador.TargetStatus.Status);
@@ -27,7 +26,11 @@ public class DeteccionModelos3D : MonoBehaviour
     {
         bool detectado = estado == Status.TRACKED;
 
+        // Mostrar botones cuando se detecta el target
         panelSeleccionModelos.SetActive(detectado);
+
+        // Mostrar aviso cuando NO se detecta el target
+        panelAvisoTarget.SetActive(!detectado);
     }
 
     void OnDestroy()
