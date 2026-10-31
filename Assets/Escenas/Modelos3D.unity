@@ -871,7 +871,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 21d78ee2e6a5a7945bbc195dbf214791, type: 3}
+  m_Texture: {fileID: 2800000, guid: c7f7d4c036646d941b4c7c39403e7f43, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1660,6 +1660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeteccionModelos3D
   panelSeleccionModelos: {fileID: 281182144}
+  panelAvisoTarget: {fileID: 2068935744}
 --- !u!114 &1081611937
 MonoBehaviour:
   m_ObjectHideFlags: 0
