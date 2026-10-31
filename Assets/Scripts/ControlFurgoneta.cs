@@ -44,6 +44,18 @@ public class ControlFurgoneta : MonoBehaviour
     public float semiancho = 0.006f;
     public float margenTrasero = 0.01f;
 
+    [Header("Límite del mapa (hace de pared)")]
+    [Tooltip("Mitad del tamaño del mapa en X y Z, en unidades del mapa. Con (0, 0) no hay límite.")]
+    public Vector2 limiteMapa;
+    [Tooltip("Distancia del pivote de la furgoneta al morro, en unidades del mapa.")]
+    public float largoDelantero = 0.0128f;
+    [Tooltip("Distancia del pivote de la furgoneta a la trasera, en unidades del mapa.")]
+    public float largoTrasero = 0.0038f;
+    [Tooltip("Mitad del ancho de la furgoneta, en unidades del mapa.")]
+    public float anchoLateral = 0.0041f;
+
+    static readonly float[] m_LadosDeslizamiento = { 1f, -1f };
+
     InputAction m_Mover;
     InputAction m_Reiniciar;
     float m_Velocidad;
@@ -116,7 +128,7 @@ public class ControlFurgoneta : MonoBehaviour
         MoverConEntrada(m_Mover.ReadValue<Vector2>(), Time.deltaTime);
     }
 
-    void MoverConEntrada(Vector2 entrada, float deltaTime)
+    public void MoverConEntrada(Vector2 entrada, float deltaTime)
     {
         if (camara == null && Camera.main != null)
             camara = Camera.main.transform;
@@ -178,13 +190,25 @@ public class ControlFurgoneta : MonoBehaviour
                 if (!ApoyoCompleto(siguiente, arriba, escala) &&
                     !PuedeRecuperarApoyo(transform.position, siguiente, arriba, escala))
                 {
-                    m_Bloqueada = true;
-                    m_Velocidad = 0f;
-                    // Conservar el giro permite recuperar la dirección hacia la carretera.
-                    // Restaurarlo aquí bloqueaba el vehículo al pedir un giro junto al borde.
-                    break;
+                    if (!BuscarDeslizamiento(paso, arriba, escala, out Vector3 desvio))
+                    {
+                        m_Bloqueada = true;
+                        m_Velocidad = 0f;
+                        // Conservar el giro permite recuperar la dirección hacia la carretera.
+                        // Restaurarlo aquí bloqueaba el vehículo al pedir un giro junto al borde.
+                        break;
+                    }
+                    // Sigue el borde en lugar de frenar en seco y orienta el morro hacia la calzada.
+                    siguiente = transform.position + desvio;
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation,
+                        Quaternion.LookRotation(desvio, arriba), velocidadGiro * deltaTime / pasos);
                 }
                 transform.position = siguiente;
+            }
+            if (MantenerDentroDelMapa(referenciaSuelo))
+            {
+                m_Bloqueada = true;
+                m_Velocidad = 0f;
             }
             if (BuscarCarretera(transform.position, arriba, escala, out var contacto))
                 transform.position = contacto.point;
@@ -202,6 +226,54 @@ public class ControlFurgoneta : MonoBehaviour
             transform.position = apoyo.point;
     }
 
+    /// <summary>
+    /// Busca la dirección libre más parecida al avance, abriendo el ángulo poco a poco.
+    /// Así la furgoneta resbala por el borde de la carretera en vez de quedarse pillada.
+    /// </summary>
+    bool BuscarDeslizamiento(Vector3 paso, Vector3 arriba, float escala, out Vector3 desvio)
+    {
+        for (float angulo = 15f; angulo <= 75f; angulo += 15f)
+        {
+            float recorrido = Mathf.Cos(angulo * Mathf.Deg2Rad);
+            foreach (float signo in m_LadosDeslizamiento)
+            {
+                desvio = Quaternion.AngleAxis(angulo * signo, arriba) * paso * recorrido;
+                Vector3 punto = transform.position + desvio;
+                if (ApoyoCompleto(punto, arriba, escala) || PuedeRecuperarApoyo(transform.position, punto, arriba, escala))
+                    return true;
+            }
+        }
+        desvio = Vector3.zero;
+        return false;
+    }
+
+    /// <summary>
+    /// Actúa como una pared en el borde del mapa: calcula la caja de la furgoneta en coordenadas
+    /// del mapa y la empuja hacia dentro si alguna esquina se sale. Devuelve true si la ha movido.
+    /// </summary>
+    bool MantenerDentroDelMapa(Transform mapa)
+    {
+        if (mapa == null || limiteMapa == Vector2.zero)
+            return false;
+
+        Vector3 adelante = mapa.InverseTransformDirection(transform.forward);
+        Vector3 derecha = mapa.InverseTransformDirection(transform.right);
+        float mitadLargo = (largoDelantero + largoTrasero) * 0.5f;
+        Vector3 centroCaja = mapa.InverseTransformPoint(transform.position) +
+                             adelante * ((largoDelantero - largoTrasero) * 0.5f);
+
+        float extensionX = Mathf.Abs(adelante.x) * mitadLargo + Mathf.Abs(derecha.x) * anchoLateral;
+        float extensionZ = Mathf.Abs(adelante.z) * mitadLargo + Mathf.Abs(derecha.z) * anchoLateral;
+        float correccionX = Mathf.Clamp(centroCaja.x, -limiteMapa.x + extensionX, limiteMapa.x - extensionX) - centroCaja.x;
+        float correccionZ = Mathf.Clamp(centroCaja.z, -limiteMapa.y + extensionZ, limiteMapa.y - extensionZ) - centroCaja.z;
+
+        if (Mathf.Approximately(correccionX, 0f) && Mathf.Approximately(correccionZ, 0f))
+            return false;
+
+        transform.position += mapa.TransformVector(new Vector3(correccionX, 0f, correccionZ));
+        return true;
+    }
+
     bool ApoyoCompleto(Vector3 centro, Vector3 arriba, float escala)
     {
         // Restringir el centro y el ancho de apoyo a la calzada. Exigir también
@@ -214,21 +286,9 @@ public class ControlFurgoneta : MonoBehaviour
 
     bool PuedeRecuperarApoyo(Vector3 actual, Vector3 siguiente, Vector3 arriba, float escala)
     {
-        // Si un giro deja un lateral sobre el margen, permitir volver hacia dentro.
-        // No autorizar salir desde una posición apoyada ni atravesar zonas sin calzada.
-        if (ApoyoCompleto(actual, arriba, escala)) return false;
-        Vector3 avance = siguiente - actual;
-        if (avance.sqrMagnitude < 1e-14f) return false;
-        Vector3 direccion = avance.normalized;
-        float paso = Mathf.Max(.001f * escala, .00001f);
-        float alcance = Mathf.Max(semiancho * 2f, .002f) * escala;
-        for (float distancia = 0f; distancia <= alcance + paso * .5f; distancia += paso)
-        {
-            Vector3 punto = siguiente + direccion * distancia;
-            if (!BuscarCarretera(punto, arriba, escala, out _)) return false;
-            if (ApoyoCompleto(punto, arriba, escala)) return true;
-        }
-        return false;
+        // Si un giro deja un lateral sobre el margen, se puede seguir mientras el centro
+        // pise calzada. No autorizar salir desde una posición apoyada.
+        return !ApoyoCompleto(actual, arriba, escala) && BuscarCarretera(siguiente, arriba, escala, out _);
     }
 
     bool BuscarCarretera(Vector3 punto, Vector3 arriba, float escala, out RaycastHit impacto)
