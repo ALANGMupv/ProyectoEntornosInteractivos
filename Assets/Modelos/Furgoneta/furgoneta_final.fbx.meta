@@ -3,7 +3,57 @@ guid: 2a1a3483e3b89614dba8feae7044c13d
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Carroceria
+    second: {fileID: 2100000, guid: 7cbe0177594470c458e0d0fea8b4fcc3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_conjunto_parachoques_delantero
+    second: {fileID: 2100000, guid: 978ff1f43c17b454187715df62495e33, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_cristales
+    second: {fileID: 2100000, guid: cadf3804a1db9ee40b1163252315a84f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_frontal_conjunto
+    second: {fileID: 2100000, guid: 1391883985fce1941916e68f3d8121e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_intermitentes_delanteros
+    second: {fileID: 2100000, guid: f3e65b55fb4b60c48854d39d33278f75, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_luces_traseras
+    second: {fileID: 2100000, guid: 8a421c60ce66282448e2acb503a20c51, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_parachoques_trasero
+    second: {fileID: 2100000, guid: 0b5d96f2d7f4d7948a20c6866df457b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_retrovisores
+    second: {fileID: 2100000, guid: 8a9a964b86998e6429a1a4ddac8155d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_ruedas
+    second: {fileID: 2100000, guid: f68a3e74126cd094d9fb1606b7b463c3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_trasera_conjunto
+    second: {fileID: 2100000, guid: 3c430587862d7464a8aa0e28a91aac99, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
