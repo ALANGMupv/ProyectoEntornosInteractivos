@@ -10,6 +10,8 @@ public class MenuPrincipal : MonoBehaviour
     public const string k_EscenaMenu = "MenuPrincipal";
 
     public AvisoTarget aviso;
+    [Tooltip("Animación de entrar en la casa al elegir una sección (opcional).")]
+    public TransicionPuerta transicion;
 
     [Header("Accesos por target")]
     public AccesoTarget preview;
@@ -23,8 +25,7 @@ public class MenuPrincipal : MonoBehaviour
     public bool juegoDesbloqueado;
     public AccesoTarget juego;
 
-    // TODO (idea del hi-fi): el fondo será la carretera y el bosque, y "estaría guapísimo que fuera animado"
-    // (p. ej. un desplazamiento lento o parallax). De momento es blanco porque aún no tenemos la imagen.
+    // Color liso detrás de todo. La animación (fachada de noche, niebla, viento y rayos) está en FondoAnimado.
     public Image fondo;
 
     void Start()
@@ -32,14 +33,23 @@ public class MenuPrincipal : MonoBehaviour
         botonJuego.interactable = juegoDesbloqueado;
     }
 
-    public void AbrirPreview() => aviso.Mostrar(preview);
-    public void AbrirTrailer() => aviso.Mostrar(trailer);
-    public void AbrirInstrucciones() => aviso.Mostrar(instrucciones);
-    public void AbrirModelos3D() => aviso.Mostrar(modelos3D);
+    public void AbrirPreview() => Abrir(preview);
+    public void AbrirTrailer() => Abrir(trailer);
+    public void AbrirInstrucciones() => Abrir(instrucciones);
+    public void AbrirModelos3D() => Abrir(modelos3D);
 
     public void AbrirJuego()
     {
         if (juegoDesbloqueado)
-            aviso.Mostrar(juego);
+            Abrir(juego);
+    }
+
+    /// <summary>Con transición, se entra en la casa antes de mostrar el aviso; sin ella, el aviso sale directamente.</summary>
+    void Abrir(AccesoTarget acceso)
+    {
+        if (transicion != null)
+            transicion.Entrar(acceso);
+        else
+            aviso.Mostrar(acceso);
     }
 }
