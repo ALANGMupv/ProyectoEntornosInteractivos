@@ -5,29 +5,29 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Escenas/MenuPrincipal.unity
     guid: 661821aa5709d8741bacc3142a676dca
   - enabled: 1
-    path: Assets/Escenas/Preview.unity
+    path: Assets/__pruebas/ScenesPrueba/Preview29102026.unity
     guid: 1634a48810675ec49b0c2678ede4fda8
   - enabled: 1
     path: Assets/Escenas/EscenaControlBoorgonetaRA.unity
     guid: ca101602d7f535140853fc63db09cc36
-  - enabled: 0
+  - enabled: 1
     path: Assets/Escenas/Trailer.unity
     guid: 83ee61efefb07904ea3db80b85a15483
-  - enabled: 0
+  - enabled: 1
     path: Assets/Escenas/Instrucciones.unity
     guid: 9f674a701654827448968b19fff3c71f
-  - enabled: 0
+  - enabled: 1
     path: Assets/Escenas/Modelos3D.unity
     guid: f0843287090d3044e97cd7351544c3f3
   - enabled: 0
     path: Assets/[AquiNombreJuego]/Tutorial_Demo/Demo_Scenes/MainMenu.unity
     guid: e0afa25d30aeb924895fa68e23be7af2
   - enabled: 1
-    path: Assets/Escenas/PreviewConIluminacion.unity
+    path: Assets/Escenas/Preview.unity
     guid: 5c648971396270445a2b1f19c8be45af
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
