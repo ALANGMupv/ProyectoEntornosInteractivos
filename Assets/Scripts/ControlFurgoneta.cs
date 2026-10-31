@@ -54,6 +54,8 @@ public class ControlFurgoneta : MonoBehaviour
     [Tooltip("Mitad del ancho de la furgoneta, en unidades del mapa.")]
     public float anchoLateral = 0.0041f;
 
+    public event System.Action Reiniciado;
+
     static readonly float[] m_LadosDeslizamiento = { 1f, -1f };
 
     InputAction m_Mover;
@@ -115,6 +117,7 @@ public class ControlFurgoneta : MonoBehaviour
         m_Velocidad = 0f;
         m_Bloqueada = false;
         m_EsperarSoltarControl = mejorarApoyo;
+        Reiniciado?.Invoke();
     }
 
     void Update()
