@@ -203,8 +203,9 @@ public class ControlFurgoneta : MonoBehaviour
                     }
                     // Sigue el borde en lugar de frenar en seco y orienta el morro hacia la calzada.
                     siguiente = transform.position + desvio;
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation,
-                        Quaternion.LookRotation(desvio, arriba), velocidadGiro * deltaTime / pasos);
+                    if (desvio != Vector3.zero)
+                        transform.rotation = Quaternion.RotateTowards(transform.rotation,
+                            Quaternion.LookRotation(desvio, arriba), velocidadGiro * deltaTime / pasos);
                 }
                 transform.position = siguiente;
             }
