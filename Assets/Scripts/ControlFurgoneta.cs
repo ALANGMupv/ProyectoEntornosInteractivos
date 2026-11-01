@@ -56,6 +56,9 @@ public class ControlFurgoneta : MonoBehaviour
 
     public event System.Action Reiniciado;
 
+    /// <summary>Velocidad relativa para el tono del motor; no depende del movimiento del target RA.</summary>
+    public float VelocidadNormalizada => Mathf.Clamp01(m_Velocidad / Mathf.Max(velocidadMaxima, .0001f));
+
     static readonly float[] m_LadosDeslizamiento = { 1f, -1f };
 
     InputAction m_Mover;

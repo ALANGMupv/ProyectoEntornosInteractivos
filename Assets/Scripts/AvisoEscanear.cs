@@ -14,6 +14,9 @@ public class AvisoEscanear : MonoBehaviour
     [Tooltip("Si está activo, el seguimiento extendido (la cámara ya no ve la imagen pero Vuforia sigue la posición) cuenta como detectado.")]
     public bool contarSeguimientoExtendido = true;
 
+    public bool Detectado { get; private set; }
+    public event System.Action<bool> DeteccionCambiada;
+
     void Start()
     {
         Aplicar(false);
@@ -36,10 +39,13 @@ public class AvisoEscanear : MonoBehaviour
 
     void Aplicar(bool detectado)
     {
+        bool cambio = Detectado != detectado;
+        Detectado = detectado;
         if (aviso != null)
             aviso.SetActive(!detectado);
         foreach (var control in controles)
             if (control != null)
                 control.SetActive(detectado);
+        if (cambio) DeteccionCambiada?.Invoke(detectado);
     }
 }

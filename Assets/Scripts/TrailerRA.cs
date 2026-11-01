@@ -137,6 +137,7 @@ public class TrailerRA : MonoBehaviour
 
     void AplicarVisibilidad(bool detectado)
     {
+        if (detectado && !visible) AudioSprint.Instancia?.ConfirmarTarget();
         visible = detectado;
         pantallaRA.gameObject.SetActive(detectado);
         avisoEscanear.SetActive(!detectado);

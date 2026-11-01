@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89672fb8dd6b7844f9329b5bf56b44d7, type: 3}
+  m_Name: SonidosSprint
+  m_EditorClassIdentifier: Assembly-CSharp::SonidosSprint
+  boton: {fileID: 8300000, guid: bd8e1fa3e40a8794e9252d75a51e2d31, type: 3}
+  targetDetectado: {fileID: 8300000, guid: f9a927c999ffb094fb987ff9dfd8dc90, type: 3}
+  reiniciar: {fileID: 8300000, guid: e224a747fbb994f47ad710bbc64786f2, type: 3}
+  puertaAbrir: {fileID: 8300000, guid: b9f7ea628cd1db447bb1825a2ff49b41, type: 3}
+  puertaCerrar: {fileID: 8300000, guid: 16cee0b87af8db44fa838b532150768f, type: 3}
+  ambienteMenu: {fileID: 8300000, guid: 036bc6ac63bb66b4189f73dcfcca8cb0, type: 3}
+  ambientePreview: {fileID: 8300000, guid: 407d678c0dcd8e246860eedc5741dcff, type: 3}
+  musicaMenu: {fileID: 8300000, guid: e594e2a6fc2f0124ebd7ebc4da81848f, type: 3}
+  trueno: {fileID: 8300000, guid: b4ff99bd11f3f434f83c86e6b9ce20d9, type: 3}
+  motor: {fileID: 8300000, guid: 46941605070fec240834c7e652517e5e, type: 3}
+  volumenBotones: 0.5
+  volumenConfirmacion: 0.4
+  volumenPuerta: 0.5
+  retrasoCierrePuerta: 0.2
+  volumenAmbienteMenu: 0.16
+  volumenAmbientePreview: 0.2
+  volumenMusica: 0.22
+  volumenTrueno: 0.25
+  volumenMotor: 0.35

@@ -84,6 +84,8 @@ public class TransicionPuerta : MonoBehaviour
         BloquearInterfaz(true);
         if (sonidoPuerta != null)
             sonidoPuerta.Play();
+        else
+            AudioSprint.Instancia?.ReproducirPuerta(true);
         negro.gameObject.SetActive(true);
 
         for (float t = 0f; t < 1f && !m_Saltar; t += Time.deltaTime / duracionEntrada)
@@ -100,6 +102,7 @@ public class TransicionPuerta : MonoBehaviour
     IEnumerator AnimarSalida()
     {
         m_Saltar = false;
+        AudioSprint.Instancia?.ReproducirPuerta(false);
         negro.gameObject.SetActive(true);
         for (float t = 1f; t > 0f && !m_Saltar; t -= Time.deltaTime / duracionSalida)
         {
