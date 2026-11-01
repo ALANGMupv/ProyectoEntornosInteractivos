@@ -40,6 +40,8 @@ public static class ConfigurarAudioSprint
         sonidos.musicaMenu = Clip("Musica_Menu");
         sonidos.trueno = Clip("Ambiente_Trueno");
         sonidos.motor = Clip("Motor_Furgoneta");
+        sonidos.paginaLibro = Clip("Libro_Pagina");
+        sonidos.fantasma = Clip("Fantasma_Aparece");
         EditorUtility.SetDirty(sonidos);
         AssetDatabase.SaveAssets();
         Debug.Log("[T016] Catálogo de audio preparado.");
