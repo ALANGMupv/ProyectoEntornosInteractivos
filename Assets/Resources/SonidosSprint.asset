@@ -35,7 +35,7 @@ MonoBehaviour:
   volumenMusica: 0.22
   volumenTrueno: 0.25
   volumenMotor: 0.35
-  volumenPagina: 0.1
+  volumenPagina: 0.3
   volumenFantasma: 0.5
   volumenBloqueado: 0.5
   volumenSlider: 0.4
