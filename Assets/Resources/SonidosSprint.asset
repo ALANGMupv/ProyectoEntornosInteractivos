@@ -24,6 +24,8 @@ MonoBehaviour:
   motor: {fileID: 8300000, guid: 46941605070fec240834c7e652517e5e, type: 3}
   paginaLibro: {fileID: 8300000, guid: 34112c34c57abe64a969f75d942e6513, type: 3}
   fantasma: {fileID: 8300000, guid: ec17db215fd1c2a48a1333300670ba93, type: 3}
+  bloqueado: {fileID: 8300000, guid: 2eacfca3b08b7db4ea694fc6404b0330, type: 3}
+  slider: {fileID: 8300000, guid: 97ee239924d8f764589a9df5cdb25366, type: 3}
   volumenBotones: 0.5
   volumenConfirmacion: 0.4
   volumenPuerta: 0.5
@@ -35,3 +37,5 @@ MonoBehaviour:
   volumenMotor: 0.35
   volumenPagina: 0.5
   volumenFantasma: 0.5
+  volumenBloqueado: 0.5
+  volumenSlider: 0.4

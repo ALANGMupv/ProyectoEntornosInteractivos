@@ -6,7 +6,7 @@ public sealed class SonidosSprint : ScriptableObject
 {
     public AudioClip boton, targetDetectado, reiniciar, puertaAbrir, puertaCerrar;
     public AudioClip ambienteMenu, ambientePreview, musicaMenu, trueno, motor;
-    public AudioClip paginaLibro, fantasma;
+    public AudioClip paginaLibro, fantasma, bloqueado, slider;
     [Range(0, 1)] public float volumenBotones = .5f;
     [Range(0, 1)] public float volumenConfirmacion = .4f;
     [Range(0, 1)] public float volumenPuerta = .5f;
@@ -19,4 +19,6 @@ public sealed class SonidosSprint : ScriptableObject
     [Range(0, 1)] public float volumenMotor = .35f;
     [Range(0, 1)] public float volumenPagina = .5f;
     [Range(0, 1)] public float volumenFantasma = .5f;
+    [Range(0, 1)] public float volumenBloqueado = .5f;
+    [Range(0, 1)] public float volumenSlider = .4f;
 }

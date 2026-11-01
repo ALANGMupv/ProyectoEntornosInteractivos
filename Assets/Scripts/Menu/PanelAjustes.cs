@@ -15,6 +15,7 @@ public class PanelAjustes : MonoBehaviour
         sliderVolumen.maxValue = 100f;
         sliderVolumen.wholeNumbers = true;
         sliderVolumen.onValueChanged.AddListener(valor => AjustesAudio.Volumen = valor / 100f);
+        sliderVolumen.onValueChanged.AddListener(valor => AudioSprint.Instancia?.ReproducirSlider(valor));
     }
 
     void OnEnable()

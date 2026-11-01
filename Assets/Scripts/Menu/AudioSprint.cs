@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -8,13 +9,15 @@ public sealed class AudioSprint : MonoBehaviour
     public static AudioSprint Instancia { get; private set; }
     public SonidosSprint sonidos;
 
-    AudioSource interfaz, ambiente, musica, puerta, motor, trueno;
+    AudioSource interfaz, ambiente, musica, puerta, motor, trueno, pagina, slider;
     ControlFurgoneta furgoneta;
     AvisoEscanear seguimiento;
     Book libro;
     bool preview, detectado, pausado;
     float siguienteTrueno;
     float ultimoTarget = -10f;
+    float ultimoSlider = -10f;
+    Vector3 ultimoPuntero;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     static void ReiniciarEstatica() => Instancia = null;
@@ -44,6 +47,8 @@ public sealed class AudioSprint : MonoBehaviour
         puerta = CrearFuente("Puerta");
         motor = CrearFuente("Motor", true);
         trueno = CrearFuente("Trueno");
+        pagina = CrearFuente("Pagina", true);
+        slider = CrearFuente("Slider");
         SceneManager.sceneLoaded += EscenaCargada;
     }
 
@@ -63,7 +68,6 @@ public sealed class AudioSprint : MonoBehaviour
     {
         if (furgoneta != null) furgoneta.Reiniciado -= ReiniciarVehiculo;
         if (seguimiento != null) seguimiento.DeteccionCambiada -= CambiarDeteccion;
-        if (libro != null) libro.OnFlip.RemoveListener(ReproducirPagina);
         furgoneta = null;
         seguimiento = null;
         libro = null;
@@ -74,7 +78,7 @@ public sealed class AudioSprint : MonoBehaviour
         // Las escenas auxiliares aditivas no deben interrumpir el audio de la sección.
         if (modo == LoadSceneMode.Additive) return;
         DesconectarPreview();
-        ambiente.Stop(); musica.Stop(); puerta.Stop(); motor.Stop(); trueno.Stop();
+        ambiente.Stop(); musica.Stop(); puerta.Stop(); motor.Stop(); trueno.Stop(); pagina.Stop();
         motor.pitch = 1;
         preview = escena.name == "Preview";
         detectado = false;
@@ -84,12 +88,12 @@ public sealed class AudioSprint : MonoBehaviour
             foreach (var boton in raiz.GetComponentsInChildren<Button>(true))
                 boton.onClick.AddListener(ReproducirBoton);
             if (libro == null) libro = raiz.GetComponentInChildren<Book>(true);
+            var menu = raiz.GetComponentInChildren<MenuPrincipal>(true);
+            if (menu != null && !menu.juegoDesbloqueado) ConectarBloqueado(menu.botonJuego);
             if (!preview) continue;
             if (furgoneta == null) furgoneta = raiz.GetComponentInChildren<ControlFurgoneta>(true);
             if (seguimiento == null) seguimiento = raiz.GetComponentInChildren<AvisoEscanear>(true);
         }
-
-        if (libro != null) libro.OnFlip.AddListener(ReproducirPagina);
 
         if (escena.name == MenuPrincipal.k_EscenaMenu)
         {
@@ -122,9 +126,26 @@ public sealed class AudioSprint : MonoBehaviour
 
     public void ReproducirBoton() => interfaz.PlayOneShot(sonidos.boton, sonidos.volumenBotones);
 
-    public void ReproducirPagina() => interfaz.PlayOneShot(sonidos.paginaLibro, sonidos.volumenPagina);
-
     public void ReproducirFantasma() => interfaz.PlayOneShot(sonidos.fantasma, sonidos.volumenFantasma);
+
+    public void ReproducirBloqueado() => interfaz.PlayOneShot(sonidos.bloqueado, sonidos.volumenBloqueado);
+
+    // Un botón no interactuable no lanza onClick: el toque se recoge con un EventTrigger.
+    void ConectarBloqueado(Button boton)
+    {
+        var entrada = new EventTrigger.Entry { eventID = EventTriggerType.PointerClick };
+        entrada.callback.AddListener(_ => ReproducirBloqueado());
+        boton.gameObject.AddComponent<EventTrigger>().triggers.Add(entrada);
+    }
+
+    public void ReproducirSlider(float valor)
+    {
+        // Un tic cada pocos puntos: arrastrar genera un cambio por cada unidad del slider.
+        if (Mathf.Abs(valor - ultimoSlider) < 4f) return;
+        ultimoSlider = valor;
+        slider.pitch = Mathf.Lerp(.8f, 1.4f, valor / 100f);
+        slider.PlayOneShot(sonidos.slider, sonidos.volumenSlider);
+    }
 
     public void ReproducirPuerta(bool abrir)
     {
@@ -172,6 +193,7 @@ public sealed class AudioSprint : MonoBehaviour
     void Update()
     {
         if (pausado || sonidos == null) return;
+        if (libro != null) ActualizarPagina();
         if (preview && detectado && furgoneta != null)
         {
             float velocidad = furgoneta.VelocidadNormalizada;
@@ -183,6 +205,25 @@ public sealed class AudioSprint : MonoBehaviour
             trueno.PlayOneShot(sonidos.trueno, sonidos.volumenTrueno);
             siguienteTrueno = Time.unscaledTime + Mathf.Max(30f, sonidos.trueno.length + 5f) + Random.Range(0f, 15f);
         }
+    }
+
+    // El roce acompaña al gesto: suena al coger la hoja y sube con la velocidad del dedo.
+    void ActualizarPagina()
+    {
+        bool arrastrando = libro.PaginaEnArrastre;
+        Vector3 puntero = Input.mousePosition;
+        float velocidad = (puntero - ultimoPuntero).magnitude / Mathf.Max(Time.unscaledDeltaTime, .001f);
+        ultimoPuntero = puntero;
+
+        if (arrastrando && !pagina.isPlaying)
+        {
+            pagina.clip = sonidos.paginaLibro;
+            pagina.volume = sonidos.volumenPagina * .6f;
+            pagina.Play();
+        }
+        float objetivo = arrastrando ? sonidos.volumenPagina * Mathf.Clamp01(velocidad / 1200f) : 0f;
+        pagina.volume = Mathf.MoveTowards(pagina.volume, objetivo, Time.unscaledDeltaTime * 3f);
+        if (!arrastrando && pagina.volume <= 0f) pagina.Stop();
     }
 
     void OnApplicationPause(bool pausa)
