@@ -11,6 +11,7 @@ public sealed class AudioSprint : MonoBehaviour
     AudioSource interfaz, ambiente, musica, puerta, motor, trueno;
     ControlFurgoneta furgoneta;
     AvisoEscanear seguimiento;
+    Book libro;
     bool preview, detectado, pausado;
     float siguienteTrueno;
     float ultimoTarget = -10f;
@@ -62,8 +63,10 @@ public sealed class AudioSprint : MonoBehaviour
     {
         if (furgoneta != null) furgoneta.Reiniciado -= ReiniciarVehiculo;
         if (seguimiento != null) seguimiento.DeteccionCambiada -= CambiarDeteccion;
+        if (libro != null) libro.OnFlip.RemoveListener(ReproducirPagina);
         furgoneta = null;
         seguimiento = null;
+        libro = null;
     }
 
     void EscenaCargada(Scene escena, LoadSceneMode modo)
@@ -80,10 +83,13 @@ public sealed class AudioSprint : MonoBehaviour
         {
             foreach (var boton in raiz.GetComponentsInChildren<Button>(true))
                 boton.onClick.AddListener(ReproducirBoton);
+            if (libro == null) libro = raiz.GetComponentInChildren<Book>(true);
             if (!preview) continue;
             if (furgoneta == null) furgoneta = raiz.GetComponentInChildren<ControlFurgoneta>(true);
             if (seguimiento == null) seguimiento = raiz.GetComponentInChildren<AvisoEscanear>(true);
         }
+
+        if (libro != null) libro.OnFlip.AddListener(ReproducirPagina);
 
         if (escena.name == MenuPrincipal.k_EscenaMenu)
         {
@@ -115,6 +121,10 @@ public sealed class AudioSprint : MonoBehaviour
     }
 
     public void ReproducirBoton() => interfaz.PlayOneShot(sonidos.boton, sonidos.volumenBotones);
+
+    public void ReproducirPagina() => interfaz.PlayOneShot(sonidos.paginaLibro, sonidos.volumenPagina);
+
+    public void ReproducirFantasma() => interfaz.PlayOneShot(sonidos.fantasma, sonidos.volumenFantasma);
 
     public void ReproducirPuerta(bool abrir)
     {

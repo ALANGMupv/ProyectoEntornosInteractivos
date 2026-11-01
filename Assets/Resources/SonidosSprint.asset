@@ -22,6 +22,8 @@ MonoBehaviour:
   musicaMenu: {fileID: 8300000, guid: e594e2a6fc2f0124ebd7ebc4da81848f, type: 3}
   trueno: {fileID: 8300000, guid: b4ff99bd11f3f434f83c86e6b9ce20d9, type: 3}
   motor: {fileID: 8300000, guid: 46941605070fec240834c7e652517e5e, type: 3}
+  paginaLibro: {fileID: 8300000, guid: 34112c34c57abe64a969f75d942e6513, type: 3}
+  fantasma: {fileID: 8300000, guid: ec17db215fd1c2a48a1333300670ba93, type: 3}
   volumenBotones: 0.5
   volumenConfirmacion: 0.4
   volumenPuerta: 0.5
@@ -31,3 +33,5 @@ MonoBehaviour:
   volumenMusica: 0.22
   volumenTrueno: 0.25
   volumenMotor: 0.35
+  volumenPagina: 0.5
+  volumenFantasma: 0.5

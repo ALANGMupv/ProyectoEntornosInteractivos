@@ -91,6 +91,7 @@ public sealed class PuntoFantasma : MonoBehaviour
         m_Estado = Estado.Animando;
         m_Tiempo = 0f;
         fantasma.gameObject.SetActive(true);
+        AudioSprint.Instancia?.ReproducirFantasma();
     }
 
     void ActualizarLuz(float fuerza)
