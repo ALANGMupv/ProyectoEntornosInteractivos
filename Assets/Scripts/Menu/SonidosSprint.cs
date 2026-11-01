@@ -17,7 +17,7 @@ public sealed class SonidosSprint : ScriptableObject
     [Range(0, 1)] public float volumenMusica = .22f;
     [Range(0, 1)] public float volumenTrueno = .25f;
     [Range(0, 1)] public float volumenMotor = .35f;
-    [Range(0, 1)] public float volumenPagina = .5f;
+    [Range(0, 1)] public float volumenPagina = .18f;
     [Range(0, 1)] public float volumenFantasma = .5f;
     [Range(0, 1)] public float volumenBloqueado = .5f;
     [Range(0, 1)] public float volumenSlider = .4f;

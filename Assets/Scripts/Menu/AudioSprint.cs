@@ -86,7 +86,7 @@ public sealed class AudioSprint : MonoBehaviour
         foreach (var raiz in escena.GetRootGameObjects())
         {
             foreach (var boton in raiz.GetComponentsInChildren<Button>(true))
-                boton.onClick.AddListener(ReproducirBoton);
+                boton.onClick.AddListener(EsBloqueado(escena, boton) ? ReproducirBloqueado : ReproducirBoton);
             if (libro == null) libro = raiz.GetComponentInChildren<Book>(true);
             var menu = raiz.GetComponentInChildren<MenuPrincipal>(true);
             if (menu != null && !menu.juegoDesbloqueado) ConectarBloqueado(menu.botonJuego);
@@ -129,6 +129,10 @@ public sealed class AudioSprint : MonoBehaviour
     public void ReproducirFantasma() => interfaz.PlayOneShot(sonidos.fantasma, sonidos.volumenFantasma);
 
     public void ReproducirBloqueado() => interfaz.PlayOneShot(sonidos.bloqueado, sonidos.volumenBloqueado);
+
+    // En Modelos3D los modelos aún sin desbloquear son botones sin acción asignada.
+    static bool EsBloqueado(Scene escena, Button boton) =>
+        escena.name == "Modelos3D" && boton.onClick.GetPersistentEventCount() == 0;
 
     // Un botón no interactuable no lanza onClick: el toque se recoge con un EventTrigger.
     void ConectarBloqueado(Button boton)
