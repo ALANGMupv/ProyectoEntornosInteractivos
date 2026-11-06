@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 86429821}
   - component: {fileID: 86429820}
   - component: {fileID: 86429819}
-  - component: {fileID: 86429818}
+  - component: {fileID: 86429822}
   m_Layer: 0
   m_Name: imageV2
   m_TagString: Untagged
@@ -138,25 +138,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &86429818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 86429817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
-  mObserverBehaviour: {fileID: 86429820}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: sebuscav2
-  mDatasetName: Vuforia/PickABoo_Sprint02b.xml
-  mCastedBehaviour: {fileID: 86429820}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
 --- !u!114 &86429819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +208,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 86429818}
+  mPreview: {fileID: 86429822}
 --- !u!4 &86429821
 Transform:
   m_ObjectHideFlags: 0
@@ -243,6 +224,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &86429822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86429817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
+  mObserverBehaviour: {fileID: 86429820}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: sebuscav2
+  mDatasetName: Vuforia/PickABoo_Sprint02b.xml
+  mCastedBehaviour: {fileID: 86429820}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
 --- !u!1 &1211029342
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 1211029346}
   - component: {fileID: 1211029345}
   - component: {fileID: 1211029344}
-  - component: {fileID: 1211029343}
+  - component: {fileID: 1211029347}
   m_Layer: 0
   m_Name: imageV4
   m_TagString: Untagged
@@ -262,25 +262,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1211029343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1211029342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
-  mObserverBehaviour: {fileID: 1211029345}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: sebuscav4
-  mDatasetName: Vuforia/PickABoo_Sprint02b.xml
-  mCastedBehaviour: {fileID: 1211029345}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
 --- !u!114 &1211029344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,7 +332,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1211029343}
+  mPreview: {fileID: 1211029347}
 --- !u!4 &1211029346
 Transform:
   m_ObjectHideFlags: 0
@@ -367,6 +348,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1211029347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211029342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
+  mObserverBehaviour: {fileID: 1211029345}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: sebuscav4
+  mDatasetName: Vuforia/PickABoo_Sprint02b.xml
+  mCastedBehaviour: {fileID: 1211029345}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
 --- !u!1 &1369597503
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +378,8 @@ GameObject:
   - component: {fileID: 1369597507}
   - component: {fileID: 1369597506}
   - component: {fileID: 1369597505}
-  - component: {fileID: 1369597504}
+  - component: {fileID: 1369597508}
+  - component: {fileID: 1369597509}
   m_Layer: 0
   m_Name: imageV1
   m_TagString: Untagged
@@ -386,25 +387,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1369597504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1369597503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
-  mObserverBehaviour: {fileID: 1369597506}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: sebuscav1
-  mDatasetName: Vuforia/PickABoo_Sprint02b.xml
-  mCastedBehaviour: {fileID: 1369597506}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
 --- !u!114 &1369597505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,7 +427,19 @@ MonoBehaviour:
     m_RotationOrder: 4
   OnTargetFound:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1369597508}
+        m_TargetAssemblyTypeName: SecuenciaFantasma, Assembly-CSharp
+        m_MethodName: IniciarSecuencia
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnTargetLost:
     m_PersistentCalls:
       m_Calls: []
@@ -475,7 +469,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1369597504}
+  mPreview: {fileID: 1369597509}
 --- !u!4 &1369597507
 Transform:
   m_ObjectHideFlags: 0
@@ -489,9 +483,43 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1981543651}
+  - {fileID: 2135681259}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1369597508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369597503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e94e0413dc5f3be4e9e7f235afd06677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SecuenciaFantasma
+  fantasma: {fileID: 1981543653}
+  animator: {fileID: 1981543656}
+  tiempoFlotando: 2
+--- !u!114 &1369597509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369597503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
+  mObserverBehaviour: {fileID: 1369597506}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: sebuscav1
+  mDatasetName: Vuforia/PickABoo_Sprint02b.xml
+  mCastedBehaviour: {fileID: 1369597506}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
 --- !u!1 &1667734693
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,7 +531,7 @@ GameObject:
   - component: {fileID: 1667734697}
   - component: {fileID: 1667734696}
   - component: {fileID: 1667734695}
-  - component: {fileID: 1667734694}
+  - component: {fileID: 1667734698}
   m_Layer: 0
   m_Name: imageV3
   m_TagString: Untagged
@@ -511,25 +539,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1667734694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1667734693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
-  mObserverBehaviour: {fileID: 1667734696}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: sebuscav3
-  mDatasetName: Vuforia/PickABoo_Sprint02b.xml
-  mCastedBehaviour: {fileID: 1667734696}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
 --- !u!114 &1667734695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,7 +609,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1667734694}
+  mPreview: {fileID: 1667734698}
 --- !u!4 &1667734697
 Transform:
   m_ObjectHideFlags: 0
@@ -616,6 +625,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1667734698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667734693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1778676317, guid: 8a9a760f95896c34689febc965510927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Vuforia.Unity.Engine.dll::Vuforia.ImageTargetPreview
+  mObserverBehaviour: {fileID: 1667734696}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: sebuscav3
+  mDatasetName: Vuforia/PickABoo_Sprint02b.xml
+  mCastedBehaviour: {fileID: 1667734696}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
 --- !u!1 &1871236978
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,7 +815,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1369597507}
+    m_TransformParent: {fileID: 2135681259}
     m_Modifications:
     - target: {fileID: 6007180743642840513, guid: 5a796ed211b2cec468ecadad11acb207,
         type: 3}
@@ -797,17 +825,17 @@ PrefabInstance:
     - target: {fileID: 6007180743642840524, guid: 5a796ed211b2cec468ecadad11acb207,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.00171
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6007180743642840524, guid: 5a796ed211b2cec468ecadad11acb207,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.434
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6007180743642840524, guid: 5a796ed211b2cec468ecadad11acb207,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.49
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6007180743642840524, guid: 5a796ed211b2cec468ecadad11acb207,
         type: 3}
@@ -852,11 +880,39 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6007180743642840513, guid: 5a796ed211b2cec468ecadad11acb207,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1981543653}
   m_SourcePrefab: {fileID: 100100000, guid: 5a796ed211b2cec468ecadad11acb207, type: 3}
 --- !u!4 &1981543651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6007180743642840524, guid: 5a796ed211b2cec468ecadad11acb207,
+    type: 3}
+  m_PrefabInstance: {fileID: 1981543650}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1981543652 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6007180743642840513, guid: 5a796ed211b2cec468ecadad11acb207,
+    type: 3}
+  m_PrefabInstance: {fileID: 1981543650}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1981543653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981543652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 499b2d4eda881654387ec8b2770679ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimacionFantasma
+--- !u!95 &1981543656 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6007180743642840525, guid: 5a796ed211b2cec468ecadad11acb207,
     type: 3}
   m_PrefabInstance: {fileID: 1981543650}
   m_PrefabAsset: {fileID: 0}
@@ -957,6 +1013,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &2135681258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2135681259}
+  m_Layer: 0
+  m_Name: PuntoAparicion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2135681259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135681258}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.00171, y: 0.434, z: -0.49}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1981543651}
+  m_Father: {fileID: 1369597507}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
