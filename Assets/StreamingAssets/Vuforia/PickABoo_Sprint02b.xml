@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="sebuscav2" size="1.000000 1.505814" />
+    <ImageTarget name="sebuscav1" size="1.000000 1.497050" />
+    <ImageTarget name="sebuscav4" size="1.000000 1.488235" />
+    <ImageTarget name="sebuscav3" size="1.000000 1.496307" />
+  </Tracking>
+</QCARConfig>
