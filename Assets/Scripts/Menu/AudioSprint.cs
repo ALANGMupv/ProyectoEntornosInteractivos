@@ -13,7 +13,7 @@ public sealed class AudioSprint : MonoBehaviour
     ControlFurgoneta furgoneta;
     AvisoEscanear seguimiento;
     Book libro;
-    bool preview, detectado, pausado;
+    bool preview, menu, detectado, pausado;
     float siguienteTrueno;
     float ultimoTarget = -10f;
     float ultimoSlider = -10f;
@@ -81,6 +81,7 @@ public sealed class AudioSprint : MonoBehaviour
         ambiente.Stop(); musica.Stop(); puerta.Stop(); motor.Stop(); trueno.Stop(); pagina.Stop();
         motor.pitch = 1;
         preview = escena.name == "Preview";
+        menu = false;
         detectado = false;
 
         foreach (var raiz in escena.GetRootGameObjects())
@@ -88,14 +89,19 @@ public sealed class AudioSprint : MonoBehaviour
             foreach (var boton in raiz.GetComponentsInChildren<Button>(true))
                 boton.onClick.AddListener(EsBloqueado(escena, boton) ? ReproducirBloqueado : ReproducirBoton);
             if (libro == null) libro = raiz.GetComponentInChildren<Book>(true);
-            var menu = raiz.GetComponentInChildren<MenuPrincipal>(true);
-            if (menu != null && !menu.juegoDesbloqueado) ConectarBloqueado(menu.botonJuego);
+            // Cualquier escena con MenuPrincipal es un menú (el del sprint 2a y el del juego).
+            var menuPrincipal = raiz.GetComponentInChildren<MenuPrincipal>(true);
+            if (menuPrincipal != null)
+            {
+                menu = true;
+                if (!menuPrincipal.juegoDesbloqueado) ConectarBloqueado(menuPrincipal.botonJuego);
+            }
             if (!preview) continue;
             if (furgoneta == null) furgoneta = raiz.GetComponentInChildren<ControlFurgoneta>(true);
             if (seguimiento == null) seguimiento = raiz.GetComponentInChildren<AvisoEscanear>(true);
         }
 
-        if (escena.name == MenuPrincipal.k_EscenaMenu)
+        if (menu)
         {
             ReproducirBucle(ambiente, sonidos.ambienteMenu, sonidos.volumenAmbienteMenu);
             ReproducirBucle(musica, sonidos.musicaMenu, sonidos.volumenMusica);
@@ -204,7 +210,7 @@ public sealed class AudioSprint : MonoBehaviour
             motor.pitch = Mathf.MoveTowards(motor.pitch, Mathf.Lerp(1f, 1.3f, velocidad), Time.unscaledDeltaTime * .6f);
             motor.volume = sonidos.volumenMotor * Mathf.Lerp(.7f, 1f, velocidad);
         }
-        if (SceneManager.GetActiveScene().name == MenuPrincipal.k_EscenaMenu && Time.unscaledTime >= siguienteTrueno)
+        if (menu && Time.unscaledTime >= siguienteTrueno)
         {
             trueno.PlayOneShot(sonidos.trueno, sonidos.volumenTrueno);
             siguienteTrueno = Time.unscaledTime + Mathf.Max(30f, sonidos.trueno.length + 5f) + Random.Range(0f, 15f);
