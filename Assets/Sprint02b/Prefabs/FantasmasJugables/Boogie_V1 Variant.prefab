@@ -90,8 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62752a0a0f7b7a5459d8fd505508efb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimientoFantasmaB
-  distanciaMinima: 1.5
-  distanciaMaxima: 3
+  distanciaMinima: 2
+  distanciaMaxima: 3.5
   velocidadGiro: 40
   velocidadMovimiento: 0.5
-  correccionRotacion: {x: -90, y: -180, z: 0}

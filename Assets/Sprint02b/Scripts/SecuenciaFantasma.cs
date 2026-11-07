@@ -8,6 +8,7 @@ public class SecuenciaFantasma : MonoBehaviour
     [Header("Fase 1 - Cinematica")]
     [SerializeField] private AnimacionFantasma fantasmaA;
     [SerializeField] private Animator animatorA;
+    [SerializeField] private Transform puntoAparicion;
     [SerializeField] private float tiempoFlotando = 2f;
 
     [Header("Fase 2 - Fantasma jugable")]
@@ -29,6 +30,7 @@ public class SecuenciaFantasma : MonoBehaviour
             return;
 
         if (fantasmaA == null || animatorA == null ||
+            puntoAparicion == null ||
             prefabFantasmaB == null || camaraRA == null)
         {
             Debug.LogError(
@@ -43,7 +45,7 @@ public class SecuenciaFantasma : MonoBehaviour
 
     private IEnumerator ReproducirSecuencia()
     {
-        // Aparicion del Fantasma A
+        // FASE 1: Aparicion
         fantasmaA.ActivarFantasma();
 
         Debug.Log("Fantasma A: apareciendo");
@@ -53,10 +55,10 @@ public class SecuenciaFantasma : MonoBehaviour
                 .IsName("Flotar")
         );
 
-        // Esperar mientras flota
+        // Permanecer flotando
         yield return new WaitForSeconds(tiempoFlotando);
 
-        // Activar huida
+        // Iniciar huida
         fantasmaA.EsconderFantasma();
 
         Debug.Log("Fantasma A: huyendo");
@@ -66,20 +68,44 @@ public class SecuenciaFantasma : MonoBehaviour
                 .IsName("Huir")
         );
 
-        // Esperar hasta que termine la huida
-        yield return new WaitUntil(() =>
+        // Guardar la orientacion original
+        Quaternion rotacionInicial = puntoAparicion.rotation;
+
+        // Girar 180 grados mientras se reproduce Huir
+        while (true)
         {
             AnimatorStateInfo estado =
                 animatorA.GetCurrentAnimatorStateInfo(0);
 
-            return estado.IsName("Huir") &&
-                   estado.normalizedTime >= 1f;
-        });
+            if (!estado.IsName("Huir") ||
+                estado.normalizedTime >= 1f)
+            {
+                break;
+            }
 
-        // Crear Fantasma B
+            float progreso = Mathf.Clamp01(
+                estado.normalizedTime
+            );
+
+            // Giro alrededor del eje vertical global
+            puntoAparicion.rotation =
+                Quaternion.AngleAxis(
+                    180f * progreso,
+                    Vector3.up
+                ) * rotacionInicial;
+
+            yield return null;
+        }
+
+        // Completar exactamente la media vuelta
+        puntoAparicion.rotation =
+            Quaternion.AngleAxis(180f, Vector3.up)
+            * rotacionInicial;
+
+        // FASE 2: Crear fantasma jugable
         CrearFantasmaB();
 
-        // Ocultar Fantasma A
+        // Desactivar fantasma de la cinematica
         fantasmaA.gameObject.SetActive(false);
 
         Debug.Log("Cinematica finalizada");
@@ -87,6 +113,7 @@ public class SecuenciaFantasma : MonoBehaviour
 
     private void CrearFantasmaB()
     {
+        // Posicion aleatoria alrededor del jugador
         float angulo = Random.Range(
             0f, Mathf.PI * 2f
         );
@@ -105,7 +132,7 @@ public class SecuenciaFantasma : MonoBehaviour
 
         GameObject fantasmaB = null;
 
-        // Crear un anclaje espacial si esta disponible
+        // Intentar crear un anclaje espacial
         if (VuforiaBehaviour.Instance != null &&
             VuforiaBehaviour.Instance.World.AnchorsSupported)
         {
@@ -127,7 +154,6 @@ public class SecuenciaFantasma : MonoBehaviour
                 fantasmaB.transform.localPosition =
                     Vector3.zero;
 
-                // Respetar la rotacion del prefab
                 fantasmaB.transform.localRotation =
                     prefabFantasmaB.transform.localRotation;
             }
@@ -162,7 +188,7 @@ public class SecuenciaFantasma : MonoBehaviour
             );
         }
 
-        // Referencia para audio, indicadores y captura
+        // Referencia para los otros sistemas
         ObjetivoActual = fantasmaB.transform;
 
         Debug.Log(
