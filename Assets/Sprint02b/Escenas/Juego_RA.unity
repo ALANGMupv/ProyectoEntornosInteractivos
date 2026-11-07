@@ -910,6 +910,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 31101437}
+  - {fileID: 1348365489}
   - {fileID: 508866461}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1421,6 +1422,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 607088161}
   m_CullTransparentMesh: 1
+--- !u!1 &662654744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 662654746}
+  - component: {fileID: 662654745}
+  m_Layer: 0
+  m_Name: CapturaFantasma
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &662654745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662654744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23ec37ed69cb01042aa6ac10214f1395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CapturaFantasma
+  camaraRA: {fileID: 1871236983}
+  distanciaMaxima: 6
+  radioTolerancia: 0.03
+  usarRatonEnEditor: 1
+  tiempoCaptura: 2.5
+  velocidadVaciado: 3
+  reiniciarAlFallar: 0
+  mira: {fileID: 1348365488}
+  duracionDesaparicion: 0.4
+  vibrarAlCapturar: 1
+  alCapturar:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &662654746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662654744}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &731406175
 GameObject:
   m_ObjectHideFlags: 0
@@ -2335,6 +2393,142 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499b2d4eda881654387ec8b2770679ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimacionFantasma
+--- !u!1001 &1348365487
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 323536206}
+    m_Modifications:
+    - target: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9073996560454655347, guid: f30ed9cc962242f478ad28c751634cef,
+        type: 3}
+      propertyPath: m_Name
+      value: MiraCaptura
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f30ed9cc962242f478ad28c751634cef, type: 3}
+--- !u!114 &1348365488 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 72247700269090352, guid: f30ed9cc962242f478ad28c751634cef,
+    type: 3}
+  m_PrefabInstance: {fileID: 1348365487}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45cf476df647ac043bab9a60d7ad4986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiraCaptura
+--- !u!224 &1348365489 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2968964910459136746, guid: f30ed9cc962242f478ad28c751634cef,
+    type: 3}
+  m_PrefabInstance: {fileID: 1348365487}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1369597503
 GameObject:
   m_ObjectHideFlags: 0
@@ -3588,3 +3782,4 @@ SceneRoots:
   - {fileID: 48116578}
   - {fileID: 323536206}
   - {fileID: 2040396874}
+  - {fileID: 662654746}
