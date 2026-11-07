@@ -31,7 +31,9 @@ public class SecuenciaFantasma : MonoBehaviour
         if (fantasmaA == null || animatorA == null ||
             prefabFantasmaB == null || camaraRA == null)
         {
-            Debug.LogError("Faltan referencias en SecuenciaFantasma.");
+            Debug.LogError(
+                "Faltan referencias en SecuenciaFantasma"
+            );
             return;
         }
 
@@ -41,29 +43,30 @@ public class SecuenciaFantasma : MonoBehaviour
 
     private IEnumerator ReproducirSecuencia()
     {
-        // 1. Activar la aparicion
+        // Aparicion del Fantasma A
         fantasmaA.ActivarFantasma();
 
         Debug.Log("Fantasma A: apareciendo");
 
-        // 2. Esperar hasta que llegue a Flotar
         yield return new WaitUntil(() =>
-            animatorA.GetCurrentAnimatorStateInfo(0).IsName("Flotar")
+            animatorA.GetCurrentAnimatorStateInfo(0)
+                .IsName("Flotar")
         );
 
+        // Esperar mientras flota
         yield return new WaitForSeconds(tiempoFlotando);
 
-        // 3. Activar la huida
+        // Activar huida
         fantasmaA.EsconderFantasma();
 
         Debug.Log("Fantasma A: huyendo");
 
-        // 4. Esperar a que comience Huir
         yield return new WaitUntil(() =>
-            animatorA.GetCurrentAnimatorStateInfo(0).IsName("Huir")
+            animatorA.GetCurrentAnimatorStateInfo(0)
+                .IsName("Huir")
         );
 
-        // 5. Esperar hasta que termine Huir
+        // Esperar hasta que termine la huida
         yield return new WaitUntil(() =>
         {
             AnimatorStateInfo estado =
@@ -73,10 +76,10 @@ public class SecuenciaFantasma : MonoBehaviour
                    estado.normalizedTime >= 1f;
         });
 
-        // 6. Crear el fantasma jugable
+        // Crear Fantasma B
         CrearFantasmaB();
 
-        // 7. Desactivar el fantasma de la cinematica
+        // Ocultar Fantasma A
         fantasmaA.gameObject.SetActive(false);
 
         Debug.Log("Cinematica finalizada");
@@ -84,32 +87,35 @@ public class SecuenciaFantasma : MonoBehaviour
 
     private void CrearFantasmaB()
     {
-        // Distancia y direccion aleatorias alrededor de la camara
-        float angulo = Random.Range(0f, Mathf.PI * 2f);
+        float angulo = Random.Range(
+            0f, Mathf.PI * 2f
+        );
 
         float distancia = Random.Range(
-            distanciaMinima, distanciaMaxima
+            distanciaMinima,
+            distanciaMaxima
         );
 
-        Vector3 posicion = camaraRA.position + new Vector3(
-            Mathf.Cos(angulo) * distancia,
-            desplazamientoAltura,
-            Mathf.Sin(angulo) * distancia
-        );
+        Vector3 posicion = camaraRA.position +
+            new Vector3(
+                Mathf.Cos(angulo) * distancia,
+                desplazamientoAltura,
+                Mathf.Sin(angulo) * distancia
+            );
 
         GameObject fantasmaB = null;
 
-        // Intentar crear un anclaje espacial de Vuforia
+        // Crear un anclaje espacial si esta disponible
         if (VuforiaBehaviour.Instance != null &&
             VuforiaBehaviour.Instance.World.AnchorsSupported)
         {
             AnchorBehaviour anclaje =
                 VuforiaBehaviour.Instance.ObserverFactory
-                .CreateAnchorBehaviour(
-                    "Ancla_" + gameObject.name,
-                    posicion,
-                    Quaternion.identity
-                );
+                    .CreateAnchorBehaviour(
+                        "Ancla_" + gameObject.name,
+                        posicion,
+                        Quaternion.identity
+                    );
 
             if (anclaje != null)
             {
@@ -118,18 +124,22 @@ public class SecuenciaFantasma : MonoBehaviour
                     anclaje.transform
                 );
 
-                fantasmaB.transform.localPosition = Vector3.zero;
-                fantasmaB.transform.localRotation = Quaternion.identity;
+                fantasmaB.transform.localPosition =
+                    Vector3.zero;
+
+                // Respetar la rotacion del prefab
+                fantasmaB.transform.localRotation =
+                    prefabFantasmaB.transform.localRotation;
             }
         }
 
-        // Modo provisional si no hay soporte de anclajes
+        // Alternativa sin anclaje
         if (fantasmaB == null)
         {
             fantasmaB = Instantiate(
                 prefabFantasmaB,
                 posicion,
-                Quaternion.identity
+                prefabFantasmaB.transform.rotation
             );
 
             Debug.LogWarning(
@@ -137,6 +147,7 @@ public class SecuenciaFantasma : MonoBehaviour
             );
         }
 
+        // Activar movimiento aleatorio
         MovimientoFantasmaB movimiento =
             fantasmaB.GetComponent<MovimientoFantasmaB>();
 
@@ -144,9 +155,18 @@ public class SecuenciaFantasma : MonoBehaviour
         {
             movimiento.Inicializar(camaraRA);
         }
+        else
+        {
+            Debug.LogWarning(
+                "Fantasma B no tiene MovimientoFantasmaB"
+            );
+        }
 
+        // Referencia para audio, indicadores y captura
         ObjetivoActual = fantasmaB.transform;
 
-        Debug.Log("Fantasma B creado en: " + posicion);
+        Debug.Log(
+            "Fantasma B creado en: " + posicion
+        );
     }
 }

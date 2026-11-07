@@ -498,9 +498,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e94e0413dc5f3be4e9e7f235afd06677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SecuenciaFantasma
-  fantasma: {fileID: 1981543653}
-  animator: {fileID: 1981543656}
+  fantasmaA: {fileID: 1981543653}
+  animatorA: {fileID: 1981543656}
   tiempoFlotando: 2
+  prefabFantasmaB: {fileID: 214273934729474211, guid: 4856ca8cf279bf244a82ffb50dc8b5d4,
+    type: 3}
+  camaraRA: {fileID: 1871236984}
+  distanciaMinima: 1.5
+  distanciaMaxima: 3
+  desplazamientoAltura: 0
 --- !u!114 &1369597509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -870,6 +876,11 @@ PrefabInstance:
     - target: {fileID: 6007180743642840524, guid: 5a796ed211b2cec468ecadad11acb207,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6007180743642840524, guid: 5a796ed211b2cec468ecadad11acb207,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6007180743642840525, guid: 5a796ed211b2cec468ecadad11acb207,

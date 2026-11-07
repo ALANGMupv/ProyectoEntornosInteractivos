@@ -10,6 +10,8 @@ public class MovimientoFantasmaB : MonoBehaviour
     public float velocidadMovimiento = 0.5f;
 
     private Transform camara;
+    private Quaternion rotacionBase;
+
     private float alturaBase;
     private float angulo;
     private float radio;
@@ -22,16 +24,25 @@ public class MovimientoFantasmaB : MonoBehaviour
     public void Inicializar(Transform camaraJugador)
     {
         camara = camaraJugador;
+
+        // Guardar la orientacion original del prefab
+        rotacionBase = transform.rotation;
+
         alturaBase = camara.position.y;
 
-        Vector3 diferencia = transform.position - camara.position;
+        Vector3 diferencia =
+            transform.position - camara.position;
 
-        angulo = Mathf.Atan2(diferencia.z, diferencia.x)
-                 * Mathf.Rad2Deg;
+        angulo = Mathf.Atan2(
+            diferencia.z, diferencia.x
+        ) * Mathf.Rad2Deg;
 
         radio = Mathf.Clamp(
-            new Vector2(diferencia.x, diferencia.z).magnitude,
-            distanciaMinima, distanciaMaxima
+            new Vector2(
+                diferencia.x, diferencia.z
+            ).magnitude,
+            distanciaMinima,
+            distanciaMaxima
         );
 
         altura = Mathf.Clamp(
@@ -43,36 +54,68 @@ public class MovimientoFantasmaB : MonoBehaviour
         ElegirDestino();
     }
 
-    void Update()
+    void LateUpdate()
     {
-        if (camara == null) return;
+        if (camara == null)
+            return;
 
+        // Cambiar suavemente de direccion
         angulo = Mathf.MoveTowardsAngle(
-            angulo, anguloDestino,
+            angulo,
+            anguloDestino,
             velocidadGiro * Time.deltaTime
         );
 
+        // Acercarse y alejarse del jugador
         radio = Mathf.MoveTowards(
-            radio, radioDestino,
+            radio,
+            radioDestino,
             velocidadMovimiento * Time.deltaTime
         );
 
+        // Variar la altura
         altura = Mathf.MoveTowards(
-            altura, alturaDestino,
+            altura,
+            alturaDestino,
             velocidadMovimiento * Time.deltaTime
         );
 
         float radianes = angulo * Mathf.Deg2Rad;
 
+        // Moverse alrededor del jugador
         transform.position = new Vector3(
-            camara.position.x + Mathf.Cos(radianes) * radio,
+            camara.position.x +
+                Mathf.Cos(radianes) * radio,
             altura,
-            camara.position.z + Mathf.Sin(radianes) * radio
+            camara.position.z +
+                Mathf.Sin(radianes) * radio
         );
 
-        if (Mathf.Abs(Mathf.DeltaAngle(angulo, anguloDestino)) < 1f &&
+        // Mirar hacia el jugador sin inclinarse
+        Vector3 direccion =
+            camara.position - transform.position;
+
+        direccion.y = 0f;
+
+        if (direccion.sqrMagnitude > 0.001f)
+        {
+            Quaternion mirarJugador =
+                Quaternion.LookRotation(
+                    direccion, Vector3.up
+                );
+
+            transform.rotation =
+                mirarJugador * rotacionBase;
+        }
+
+        // Elegir un nuevo destino al llegar
+        if (
+            Mathf.Abs(Mathf.DeltaAngle(
+                angulo, anguloDestino
+            )) < 1f &&
             Mathf.Abs(radio - radioDestino) < 0.05f &&
-            Mathf.Abs(altura - alturaDestino) < 0.05f)
+            Mathf.Abs(altura - alturaDestino) < 0.05f
+        )
         {
             ElegirDestino();
         }
@@ -80,8 +123,15 @@ public class MovimientoFantasmaB : MonoBehaviour
 
     private void ElegirDestino()
     {
-        anguloDestino = angulo + Random.Range(-120f, 120f);
-        radioDestino = Random.Range(distanciaMinima, distanciaMaxima);
-        alturaDestino = alturaBase + Random.Range(-0.2f, 0.4f);
+        anguloDestino =
+            angulo + Random.Range(-120f, 120f);
+
+        radioDestino = Random.Range(
+            distanciaMinima,
+            distanciaMaxima
+        );
+
+        alturaDestino = alturaBase +
+            Random.Range(-0.2f, 0.4f);
     }
 }
