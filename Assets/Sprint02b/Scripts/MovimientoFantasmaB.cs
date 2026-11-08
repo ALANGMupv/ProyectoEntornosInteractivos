@@ -8,6 +8,8 @@ public class MovimientoFantasmaB : MonoBehaviour
     public float distanciaMaxima = 3f;
     public float velocidadGiro = 40f;
     public float velocidadMovimiento = 0.5f;
+    [Tooltip("Segundos para acelerar y frenar: evita los cambios bruscos de direccion.")]
+    public float suavizado = 0.8f;
 
     private Transform camara;
     private Quaternion rotacionBase;
@@ -20,6 +22,10 @@ public class MovimientoFantasmaB : MonoBehaviour
     private float anguloDestino;
     private float radioDestino;
     private float alturaDestino;
+
+    private float velocidadAngulo;
+    private float velocidadRadio;
+    private float velocidadAltura;
 
     public void Inicializar(Transform camaraJugador)
     {
@@ -59,25 +65,32 @@ public class MovimientoFantasmaB : MonoBehaviour
         if (camara == null)
             return;
 
-        // Cambiar suavemente de direccion
-        angulo = Mathf.MoveTowardsAngle(
+        // Cambiar suavemente de direccion: acelera y frena en vez
+        // de arrancar o girar en seco. La velocidad maxima no cambia.
+        angulo = Mathf.SmoothDampAngle(
             angulo,
             anguloDestino,
-            velocidadGiro * Time.deltaTime
+            ref velocidadAngulo,
+            suavizado,
+            velocidadGiro
         );
 
         // Acercarse y alejarse del jugador
-        radio = Mathf.MoveTowards(
+        radio = Mathf.SmoothDamp(
             radio,
             radioDestino,
-            velocidadMovimiento * Time.deltaTime
+            ref velocidadRadio,
+            suavizado,
+            velocidadMovimiento
         );
 
         // Variar la altura
-        altura = Mathf.MoveTowards(
+        altura = Mathf.SmoothDamp(
             altura,
             alturaDestino,
-            velocidadMovimiento * Time.deltaTime
+            ref velocidadAltura,
+            suavizado,
+            velocidadMovimiento
         );
 
         float radianes = angulo * Mathf.Deg2Rad;

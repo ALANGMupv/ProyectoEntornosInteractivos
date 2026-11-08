@@ -1456,7 +1456,7 @@ MonoBehaviour:
   radioTolerancia: 0.03
   usarRatonEnEditor: 1
   tiempoCaptura: 2.5
-  velocidadVaciado: 3
+  velocidadVaciado: 0.8
   reiniciarAlFallar: 0
   mira: {fileID: 1348365488}
   duracionDesaparicion: 0.4
