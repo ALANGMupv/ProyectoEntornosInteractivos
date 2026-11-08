@@ -27,6 +27,9 @@ public class SecuenciaFantasma : MonoBehaviour
     /// <summary>Si ya se ha escaneado este target y ha empezado su secuencia.</summary>
     public bool Iniciada => secuenciaIniciada;
 
+    /// <summary>Si el fantasma de la cinemática ya ha salido disparado (empieza la persecución).</summary>
+    public bool Huyendo { get; private set; }
+
     public void IniciarSecuencia()
     {
         if (secuenciaIniciada)
@@ -63,6 +66,7 @@ public class SecuenciaFantasma : MonoBehaviour
 
         // Iniciar huida
         fantasmaA.EsconderFantasma();
+        Huyendo = true;
 
         Debug.Log("Fantasma A: huyendo");
 

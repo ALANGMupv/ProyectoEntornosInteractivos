@@ -46,6 +46,9 @@ public class CapturaFantasma : MonoBehaviour
     /// <summary>Si el punto central está ahora mismo sobre un fantasma jugable.</summary>
     public bool ApuntandoFantasma { get; private set; }
 
+    /// <summary>Fantasma que se estaba capturando (sigue aunque se escape, hasta que el círculo se vacía).</summary>
+    public Transform Objetivo => objetivo != null ? objetivo.transform : null;
+
     private MovimientoFantasmaB objetivo;
     private readonly HashSet<MovimientoFantasmaB> capturando = new HashSet<MovimientoFantasmaB>();
 
