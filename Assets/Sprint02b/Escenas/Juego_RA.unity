@@ -602,6 +602,91 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499b2d4eda881654387ec8b2770679ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimacionFantasma
+--- !u!1 &185197911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 185197913}
+  - component: {fileID: 185197912}
+  m_Layer: 0
+  m_Name: AudioPartida
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &185197912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185197911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2a46d3526ec4fd4c82df9add4f59568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioPartida
+  gestor: {fileID: 1050024007}
+  captura: {fileID: 662654745}
+  secuencias:
+  - {fileID: 1369597508}
+  - {fileID: 86429822}
+  - {fileID: 1667734698}
+  - {fileID: 1211029347}
+  musica: {fileID: 8300000, guid: f0d4e79adaab41543a5a2840219e46e5, type: 3}
+  volumenMusica: 0.075
+  pitchBusqueda: 0.88
+  pitchPersecucion: 1
+  pitchPocoTiempo: 1.15
+  velocidadCambioPitch: 0.08
+  atenuacionMusica: 0.4
+  sonidoAparicion: {fileID: 8300000, guid: 4313b0f7d19f0b742ba498227888cf6a, type: 3}
+  volumenAparicion: 0.8
+  comienzaAtrapar: {fileID: 8300000, guid: 7021813d62ebc324eac5c54d5d03822e, type: 3}
+  volumenComienzaAtrapar: 0.6
+  mitadCirculo: {fileID: 8300000, guid: c10b8730fbe4e2845bb9a50be74dc188, type: 3}
+  volumenMitadCirculo: 0.3
+  sonidoCaptura: {fileID: 8300000, guid: 228b16d39659ee54ba3a80bb4d101b65, type: 3}
+  volumenCaptura: 0.75
+  avisoPocoTiempo: {fileID: 8300000, guid: 5849d3c6aeb16d14087525bde3a75d75, type: 3}
+  volumenAvisoPocoTiempo: 0.8
+  finalTiempo: {fileID: 8300000, guid: 5cef7be6aea135346a4b39e57c17c0be, type: 3}
+  volumenFinalTiempo: 0.4
+  audioFantasma: {fileID: 8300000, guid: 94e72dab0ad133d4e97a3e02ad850ee4, type: 3}
+  volumenAudioFantasma: 0.07
+  pedorretaBurlona: {fileID: 8300000, guid: 0a456809a0248b84c9fdc09d1872c1af, type: 3}
+  volumenPedorreta: 0.45
+  risaBurlona: {fileID: 8300000, guid: 2ab93106e52c94d4db1a4a54225f0b44, type: 3}
+  volumenRisa: 0.15
+  pausaFueraDeCamara: {x: 2, y: 4}
+  pausaEnCamara: {x: 4, y: 7}
+  probabilidadPedorreta: 0.3
+  separacionPedorretas: 12
+  distanciaCerca: 1.2
+  distanciaLejos: 5
+  volumenLejos: 0.25
+  progresoMinimoRisa: 0.3
+  separacionRisas: 5
+--- !u!4 &185197913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185197911}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &216376980
 GameObject:
   m_ObjectHideFlags: 0
@@ -6723,3 +6808,4 @@ SceneRoots:
   - {fileID: 2040396874}
   - {fileID: 662654746}
   - {fileID: 1050024008}
+  - {fileID: 185197913}

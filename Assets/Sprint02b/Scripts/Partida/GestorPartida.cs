@@ -66,6 +66,15 @@ public class GestorPartida : MonoBehaviour
 
     private int Total => secuencias.Length;
 
+    /// <summary>Si el reloj está en los segundos finales (cuando el tiempo se pone en rojo).</summary>
+    public bool PocoTiempo => enMarcha && !terminada && restante <= segundosAviso;
+
+    /// <summary>Si la partida ha terminado (pantalla final).</summary>
+    public bool Terminada => terminada;
+
+    /// <summary>Si se han cazado todos los fantasmas.</summary>
+    public bool TodosCazados => capturados >= Total;
+
     void Awake()
     {
         Time.timeScale = 1f;
