@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
   <Tracking>
+    <ImageTarget name="boogie" size="1.000000 1.490455" />
+    <ImageTarget name="booboo" size="1.000000 1.502976" />
+    <ImageTarget name="boozy" size="1.000000 1.494845" />
+    <ImageTarget name="boobert" size="1.000000 1.495588" />
     <ImageTarget name="prac2" size="1.000000 1.777778" />
     <ImageTarget name="pixar-toystory" size="1.000000 1.166287" />
     <ImageTarget name="pickaboo-modelos3d" size="1.000000 0.562500" />

@@ -12,6 +12,8 @@ public class MensajeTemporal : MonoBehaviour
     [SerializeField] private float fundido = 0.3f;
     [Tooltip("Tiempo mínimo antes de poder cerrarlo tocando, para no quitarlo sin querer.")]
     [SerializeField] private float esperaToque = 0.4f;
+    [Tooltip("Si está activo, no se cierra solo: hay que tocar la pantalla.")]
+    [SerializeField] private bool soloAlTocar = false;
 
     private CanvasGroup grupo;
     private float tiempo;
@@ -43,7 +45,7 @@ public class MensajeTemporal : MonoBehaviour
         tiempo += Time.unscaledDeltaTime;
 
         bool toque = Pointer.current != null && Pointer.current.press.wasPressedThisFrame;
-        if (!cerrando && (tiempo >= duracion || (toque && tiempo >= esperaToque)))
+        if (!cerrando && ((!soloAlTocar && tiempo >= duracion) || (toque && tiempo >= esperaToque)))
             cerrando = true;
 
         float paso = Time.unscaledDeltaTime / fundido;
