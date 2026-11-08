@@ -1932,9 +1932,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Escanee el target
+  m_text: 'Escanee los 4 targets
 
-    correspondiente'
+    correspondientes'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 64c0a228b51fbc245b835adaed2803b7, type: 2}
   m_sharedMaterial: {fileID: -8735034348832588749, guid: 64c0a228b51fbc245b835adaed2803b7,

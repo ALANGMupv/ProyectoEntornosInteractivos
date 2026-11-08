@@ -18,6 +18,9 @@ public class IndicadoresFantasma : MonoBehaviour
     [Tooltip("Separación del indicador respecto al borde de la pantalla.")]
     [SerializeField] private float margen = 110f;
 
+    [Tooltip("Separación respecto al borde superior, para no tapar el HUD (menú, tiempo y contador).")]
+    [SerializeField] private float margenSuperior = 260f;
+
     private readonly List<IndicadorFantasma> indicadores = new List<IndicadorFantasma>();
     private RectTransform zona;
 
@@ -67,16 +70,19 @@ public class IndicadoresFantasma : MonoBehaviour
         if (delante && vista.x > 0f && vista.x < 1f && vista.y > 0f && vista.y < 1f)
             return false;
 
-        Vector2 desdeCentro = new Vector2(vista.x - 0.5f, vista.y - 0.5f);
+        // Dirección según la posición del fantasma respecto a la cámara (derecha/arriba).
+        // No se usa la proyección en pantalla porque con el fantasma detrás o a un lado
+        // de la cámara se invierte o se dispara y el indicador señalaba el lado contrario.
+        Vector3 local = camaraRA.transform.InverseTransformPoint(posicion);
+        direccion = new Vector2(local.x, local.y);
 
-        // Detrás de la cámara la proyección sale invertida
-        if (!delante)
-            desdeCentro = -desdeCentro;
+        // Si está detrás, lo que importa es hacia qué lado girar: priorizar el horizontal
+        if (local.z < 0f)
+            direccion.x = (local.x >= 0f ? 1f : -1f) * Mathf.Max(Mathf.Abs(local.x), Mathf.Abs(local.y), 0.5f);
 
-        // Pasar a píxeles para que la dirección respete la forma de la pantalla
-        direccion = new Vector2(desdeCentro.x * Screen.width, desdeCentro.y * Screen.height);
+        // Justo detrás: indicar un lado para que se sepa hacia dónde girar
         if (direccion.sqrMagnitude < 0.0001f)
-            direccion = Vector2.down;
+            direccion = Vector2.right;
 
         direccion.Normalize();
         return true;
@@ -85,10 +91,12 @@ public class IndicadoresFantasma : MonoBehaviour
     /// <summary>Punto del borde de la pantalla (con margen) en esa dirección.</summary>
     private Vector2 PosicionEnBorde(Vector2 direccion)
     {
-        Vector2 limite = zona.rect.size * 0.5f - new Vector2(margen, margen);
+        Vector2 mitad = zona.rect.size * 0.5f;
+        float limiteX = mitad.x - margen;
+        float limiteY = mitad.y - (direccion.y > 0f ? margenSuperior : margen);
 
-        float escalaX = Mathf.Abs(direccion.x) > 0.0001f ? limite.x / Mathf.Abs(direccion.x) : float.MaxValue;
-        float escalaY = Mathf.Abs(direccion.y) > 0.0001f ? limite.y / Mathf.Abs(direccion.y) : float.MaxValue;
+        float escalaX = Mathf.Abs(direccion.x) > 0.0001f ? limiteX / Mathf.Abs(direccion.x) : float.MaxValue;
+        float escalaY = Mathf.Abs(direccion.y) > 0.0001f ? limiteY / Mathf.Abs(direccion.y) : float.MaxValue;
 
         return direccion * Mathf.Min(escalaX, escalaY);
     }
