@@ -24,6 +24,9 @@ public class SecuenciaFantasma : MonoBehaviour
 
     public Transform ObjetivoActual { get; private set; }
 
+    /// <summary>Si ya se ha escaneado este target y ha empezado su secuencia.</summary>
+    public bool Iniciada => secuenciaIniciada;
+
     public void IniciarSecuencia()
     {
         if (secuenciaIniciada)

@@ -70,16 +70,19 @@ public class IndicadoresFantasma : MonoBehaviour
         if (delante && vista.x > 0f && vista.x < 1f && vista.y > 0f && vista.y < 1f)
             return false;
 
-        Vector2 desdeCentro = new Vector2(vista.x - 0.5f, vista.y - 0.5f);
+        // Dirección según la posición del fantasma respecto a la cámara (derecha/arriba).
+        // No se usa la proyección en pantalla porque con el fantasma detrás o a un lado
+        // de la cámara se invierte o se dispara y el indicador señalaba el lado contrario.
+        Vector3 local = camaraRA.transform.InverseTransformPoint(posicion);
+        direccion = new Vector2(local.x, local.y);
 
-        // Detrás de la cámara la proyección sale invertida
-        if (!delante)
-            desdeCentro = -desdeCentro;
+        // Si está detrás, lo que importa es hacia qué lado girar: priorizar el horizontal
+        if (local.z < 0f)
+            direccion.x = (local.x >= 0f ? 1f : -1f) * Mathf.Max(Mathf.Abs(local.x), Mathf.Abs(local.y), 0.5f);
 
-        // Pasar a píxeles para que la dirección respete la forma de la pantalla
-        direccion = new Vector2(desdeCentro.x * Screen.width, desdeCentro.y * Screen.height);
+        // Justo detrás: indicar un lado para que se sepa hacia dónde girar
         if (direccion.sqrMagnitude < 0.0001f)
-            direccion = Vector2.down;
+            direccion = Vector2.right;
 
         direccion.Normalize();
         return true;

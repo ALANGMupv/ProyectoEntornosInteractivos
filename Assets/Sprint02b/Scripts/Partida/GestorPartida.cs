@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Flujo de la partida: temporizador global, contador de fantasmas cazados y pantalla
-/// final con la puntuación y el récord personal. La partida termina al acabarse el
-/// tiempo o al cazar todos los fantasmas de la escena.
+/// final con la puntuación y el récord personal. El tiempo empieza al salir el primer
+/// fantasma jugable, y la partida termina al acabarse o al cazar todos los fantasmas.
 /// </summary>
 public class GestorPartida : MonoBehaviour
 {
@@ -20,14 +20,26 @@ public class GestorPartida : MonoBehaviour
     [SerializeField] private float esperaUltimaCaptura = 1f;
 
     [Header("HUD")]
+    [Tooltip("Tiempo y contador: aparecen tras el mensaje de inicio.")]
+    [SerializeField] private GameObject[] hud;
     [SerializeField] private TMP_Text textoTiempo;
     [SerializeField] private TMP_Text textoContador;
     [Tooltip("Recuadro de escaneo que se muestra mientras no hay ningún fantasma que cazar.")]
     [SerializeField] private GameObject marcoEscaneo;
+    [Tooltip("Texto que acompaña al recuadro de escaneo.")]
+    [SerializeField] private GameObject textoBusqueda;
+    [Tooltip("Mensaje que sale al escanear el primer target.")]
+    [SerializeField] private MensajeTemporal mensajeInicio;
     [Tooltip("Segundos finales en los que el tiempo se pone en rojo.")]
     [SerializeField] private float segundosAviso = 10f;
     [SerializeField] private Color colorTiempo = new Color(1f, 0.71f, 0.278f);
     [SerializeField] private Color colorAviso = new Color(0.9f, 0.15f, 0.15f);
+
+    [Header("Animación del contador")]
+    [SerializeField] private RectTransform panelContador;
+    [Tooltip("\"+1\" que sube hasta el contador al cazar un fantasma.")]
+    [SerializeField] private TMP_Text textoMasUno;
+    [SerializeField] private float duracionAnimacion = 0.6f;
 
     [Header("Interfaz")]
     [Tooltip("Mientras está abierto, la partida se pausa.")]
@@ -48,6 +60,9 @@ public class GestorPartida : MonoBehaviour
     private int capturados;
     private bool terminada;
     private bool terminando;
+    private bool primerTarget;
+    private bool enMarcha;
+    private Coroutine animacionContador;
 
     private int Total => secuencias.Length;
 
@@ -56,6 +71,8 @@ public class GestorPartida : MonoBehaviour
         Time.timeScale = 1f;
         restante = duracion;
         panelFin.SetActive(false);
+        textoMasUno.gameObject.SetActive(false);
+        MostrarHUD(false);
         ActualizarHUD();
     }
 
@@ -83,17 +100,37 @@ public class GestorPartida : MonoBehaviour
         // Con el menú abierto se para todo (tiempo, fantasmas y captura)
         Time.timeScale = panelAjustes.activeInHierarchy ? 0f : 1f;
 
-        if (!terminando)
+        bool hayFantasmas = CapturaFantasma.HayFantasmasJugables();
+
+        // Primer target escaneado: mensaje de inicio y, tras él, el HUD
+        if (!primerTarget && AlgunTargetEscaneado())
+        {
+            primerTarget = true;
+            mensajeInicio.Mostrar();
+        }
+
+        // El tiempo empieza al verse la mira por primera vez
+        if (!enMarcha && hayFantasmas)
+            enMarcha = true;
+
+        if ((primerTarget && !mensajeInicio.Visible) || enMarcha)
+            MostrarHUD(true);
+
+        if (enMarcha && !terminando)
         {
             restante -= Time.deltaTime;
             if (restante <= 0f)
             {
                 restante = 0f;
                 Terminar();
+                return;
             }
         }
 
-        marcoEscaneo.SetActive(!terminada && !CapturaFantasma.HayFantasmasJugables());
+        // Recuadro y texto de búsqueda mientras no hay fantasma ni cinemática
+        bool buscando = !hayFantasmas && !EnCinematica() && !mensajeInicio.Visible;
+        marcoEscaneo.SetActive(buscando);
+        textoBusqueda.SetActive(buscando);
         ActualizarHUD();
     }
 
@@ -105,6 +142,10 @@ public class GestorPartida : MonoBehaviour
         capturados++;
         ActualizarHUD();
 
+        if (animacionContador != null)
+            StopCoroutine(animacionContador);
+        animacionContador = StartCoroutine(AnimarContador());
+
         if (capturados >= Total)
             StartCoroutine(TerminarTrasCaptura());
     }
@@ -114,6 +155,55 @@ public class GestorPartida : MonoBehaviour
         terminando = true;
         yield return new WaitForSeconds(esperaUltimaCaptura);
         Terminar();
+    }
+
+    private bool AlgunTargetEscaneado()
+    {
+        foreach (SecuenciaFantasma secuencia in secuencias)
+            if (secuencia.Iniciada)
+                return true;
+        return false;
+    }
+
+    /// <summary>Un target escaneado cuyo fantasma aún no ha salido: se está viendo su cinemática.</summary>
+    private bool EnCinematica()
+    {
+        foreach (SecuenciaFantasma secuencia in secuencias)
+            if (secuencia.Iniciada && secuencia.ObjetivoActual == null)
+                return true;
+        return false;
+    }
+
+    private void MostrarHUD(bool mostrar)
+    {
+        foreach (GameObject elemento in hud)
+            if (elemento.activeSelf != mostrar)
+                elemento.SetActive(mostrar);
+    }
+
+    /// <summary>El contador da un salto y un "+1" sube hasta él (solo en el HUD).</summary>
+    private IEnumerator AnimarContador()
+    {
+        RectTransform masUno = textoMasUno.rectTransform;
+        Vector2 inicio = new Vector2(0f, -110f);
+        Vector2 fin = new Vector2(0f, -20f);
+        textoMasUno.gameObject.SetActive(true);
+
+        for (float t = 0f; t < 1f; t += Time.unscaledDeltaTime / duracionAnimacion)
+        {
+            float salto = Mathf.Sin(t * Mathf.PI);
+            panelContador.localScale = Vector3.one * (1f + 0.3f * salto);
+            textoContador.color = Color.Lerp(colorTiempo, Color.white, salto);
+
+            masUno.anchoredPosition = Vector2.Lerp(inicio, fin, Mathf.SmoothStep(0f, 1f, t));
+            textoMasUno.alpha = 1f - t * t;
+            yield return null;
+        }
+
+        panelContador.localScale = Vector3.one;
+        textoContador.color = colorTiempo;
+        textoMasUno.gameObject.SetActive(false);
+        animacionContador = null;
     }
 
     private void ActualizarHUD()
@@ -130,6 +220,8 @@ public class GestorPartida : MonoBehaviour
 
         captura.enabled = false;
         marcoEscaneo.SetActive(false);
+        textoBusqueda.SetActive(false);
+        mensajeInicio.Ocultar();
         panelAjustes.SetActive(false);
         foreach (GameObject objeto in ocultarAlTerminar)
             if (objeto != null)
