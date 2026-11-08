@@ -30,6 +30,8 @@ public class GestorPartida : MonoBehaviour
     [SerializeField] private GameObject textoBusqueda;
     [Tooltip("Mensaje que sale al escanear el primer target.")]
     [SerializeField] private MensajeTemporal mensajeInicio;
+    [Tooltip("Mensaje tras cazar un fantasma, si quedan más.")]
+    [SerializeField] private MensajeTemporal mensajeSiguiente;
     [Tooltip("Segundos finales en los que el tiempo se pone en rojo.")]
     [SerializeField] private float segundosAviso = 10f;
     [SerializeField] private Color colorTiempo = new Color(1f, 0.71f, 0.278f);
@@ -106,8 +108,8 @@ public class GestorPartida : MonoBehaviour
         if (terminada)
             return;
 
-        // Con el menú abierto se para todo (tiempo, fantasmas y captura)
-        Time.timeScale = panelAjustes.activeInHierarchy ? 0f : 1f;
+        // Con el menú o el mensaje de inicio abiertos se para todo (tiempo, animaciones, fantasmas y captura)
+        Time.timeScale = panelAjustes.activeInHierarchy || mensajeInicio.Visible ? 0f : 1f;
 
         bool hayFantasmas = CapturaFantasma.HayFantasmasJugables();
 
@@ -137,7 +139,7 @@ public class GestorPartida : MonoBehaviour
         }
 
         // Recuadro y texto de búsqueda mientras no hay fantasma ni cinemática
-        bool buscando = !hayFantasmas && !EnCinematica() && !mensajeInicio.Visible;
+        bool buscando = !hayFantasmas && !EnCinematica() && !mensajeInicio.Visible && !mensajeSiguiente.Visible;
         marcoEscaneo.SetActive(buscando);
         textoBusqueda.SetActive(buscando);
         ActualizarHUD();
@@ -157,6 +159,8 @@ public class GestorPartida : MonoBehaviour
 
         if (capturados >= Total)
             StartCoroutine(TerminarTrasCaptura());
+        else
+            mensajeSiguiente.Mostrar();
     }
 
     private IEnumerator TerminarTrasCaptura()
@@ -231,6 +235,7 @@ public class GestorPartida : MonoBehaviour
         marcoEscaneo.SetActive(false);
         textoBusqueda.SetActive(false);
         mensajeInicio.Ocultar();
+        mensajeSiguiente.Ocultar();
         panelAjustes.SetActive(false);
         foreach (GameObject objeto in ocultarAlTerminar)
             if (objeto != null)

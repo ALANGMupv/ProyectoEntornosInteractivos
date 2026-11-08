@@ -22,6 +22,13 @@ public class SecuenciaFantasma : MonoBehaviour
 
     private bool secuenciaIniciada = false;
 
+    // Solo se caza un fantasma a la vez: mientras haya otro en curso, este target espera
+    private static readonly System.Collections.Generic.List<SecuenciaFantasma> todas =
+        new System.Collections.Generic.List<SecuenciaFantasma>();
+    private bool pendiente;
+    private Renderer[] rendersFantasmaA;
+    private ObserverBehaviour observer;
+
     public Transform ObjetivoActual { get; private set; }
 
     /// <summary>Si ya se ha escaneado este target y ha empezado su secuencia.</summary>
@@ -30,10 +37,82 @@ public class SecuenciaFantasma : MonoBehaviour
     /// <summary>Si el fantasma de la cinemática ya ha salido disparado (empieza la persecución).</summary>
     public bool Huyendo { get; private set; }
 
+    /// <summary>Si su fantasma jugable ya ha sido cazado (desaparece al terminar la captura).</summary>
+    public bool Completada => ObjetivoActual != null && !ObjetivoActual.gameObject.activeSelf;
+
+    /// <summary>Desde que se escanea hasta que se caza su fantasma.</summary>
+    public bool EnCurso => secuenciaIniciada && !Completada;
+
+    void Awake()
+    {
+        observer = GetComponent<ObserverBehaviour>();
+        if (fantasmaA != null)
+            rendersFantasmaA = fantasmaA.GetComponentsInChildren<Renderer>(true);
+    }
+
+    void OnEnable()
+    {
+        todas.Add(this);
+    }
+
+    void OnDisable()
+    {
+        todas.Remove(this);
+    }
+
+    void LateUpdate()
+    {
+        if (secuenciaIniciada)
+            return;
+
+        // Mientras no empiece su secuencia, su fantasma no se ve aunque Vuforia vea el target
+        MostrarFantasmaA(false);
+
+        // Escaneado mientras se cazaba otro: empieza en cuanto se caza, si se sigue viendo
+        if (pendiente)
+        {
+            if (!Rastreado())
+                pendiente = false;
+            else if (!HayOtraEnCurso())
+                IniciarSecuencia();
+        }
+    }
+
+    private bool HayOtraEnCurso()
+    {
+        foreach (SecuenciaFantasma otra in todas)
+            if (otra != this && otra.EnCurso)
+                return true;
+        return false;
+    }
+
+    private bool Rastreado()
+    {
+        return observer != null && observer.TargetStatus.Status == Status.TRACKED;
+    }
+
+    private void MostrarFantasmaA(bool mostrar)
+    {
+        if (rendersFantasmaA == null)
+            return;
+
+        foreach (Renderer render in rendersFantasmaA)
+            if (render != null && render.enabled != mostrar)
+                render.enabled = mostrar;
+    }
+
     public void IniciarSecuencia()
     {
         if (secuenciaIniciada)
             return;
+
+        if (HayOtraEnCurso())
+        {
+            pendiente = true;
+            return;
+        }
+
+        pendiente = false;
 
         if (fantasmaA == null || animatorA == null ||
             puntoAparicion == null ||
@@ -46,6 +125,9 @@ public class SecuenciaFantasma : MonoBehaviour
         }
 
         secuenciaIniciada = true;
+
+        // El target se está viendo: devolver la visibilidad que le había quitado
+        MostrarFantasmaA(true);
         StartCoroutine(ReproducirSecuencia());
     }
 
