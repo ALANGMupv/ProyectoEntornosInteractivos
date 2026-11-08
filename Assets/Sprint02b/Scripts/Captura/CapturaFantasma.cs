@@ -25,8 +25,8 @@ public class CapturaFantasma : MonoBehaviour
     [Header("Temporizador")]
     [Tooltip("Segundos que hay que mantener el punto central sobre el fantasma.")]
     [SerializeField] private float tiempoCaptura = 2.5f;
-    [Tooltip("Cuántas veces más rápido se vacía el progreso al dejar de apuntar.")]
-    [SerializeField] private float velocidadVaciado = 3f;
+    [Tooltip("Velocidad de vaciado al dejar de apuntar respecto a la de llenado (1 = igual de rápido).")]
+    [SerializeField] private float velocidadVaciado = 0.8f;
     [Tooltip("Si está activo, al dejar de apuntar el progreso vuelve a 0 de golpe.")]
     [SerializeField] private bool reiniciarAlFallar = false;
 
@@ -53,6 +53,10 @@ public class CapturaFantasma : MonoBehaviour
     {
         if (camaraRA == null)
             camaraRA = Camera.main;
+
+        // La mira no sale hasta que haya un fantasma jugable que cazar
+        if (mira != null)
+            mira.gameObject.SetActive(false);
     }
 
     void Update()
@@ -62,6 +66,18 @@ public class CapturaFantasma : MonoBehaviour
             camaraRA = Camera.main;
             if (camaraRA == null)
                 return;
+        }
+
+        // Mostrar la mira solo mientras quede algún fantasma jugable en la escena
+        bool hayFantasmas = HayFantasmasJugables();
+        if (mira != null && mira.gameObject.activeSelf != hayFantasmas)
+            mira.gameObject.SetActive(hayFantasmas);
+        if (!hayFantasmas)
+        {
+            Progreso = 0f;
+            objetivo = null;
+            ApuntandoFantasma = false;
+            return;
         }
 
         MovimientoFantasmaB apuntado = BuscarFantasma();
@@ -91,6 +107,15 @@ public class CapturaFantasma : MonoBehaviour
 
         if (mira != null)
             mira.Actualizar(Progreso, ApuntandoFantasma);
+    }
+
+    /// <summary>
+    /// Si hay algún fantasma jugable activo. El que se está capturando cuenta hasta que
+    /// termina de desaparecer, para que se vea el pulso de la mira.
+    /// </summary>
+    private static bool HayFantasmasJugables()
+    {
+        return Object.FindAnyObjectByType<MovimientoFantasmaB>() != null;
     }
 
     /// <summary>Lanza el rayo y devuelve el fantasma jugable que toca, o null.</summary>
