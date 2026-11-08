@@ -113,7 +113,7 @@ public class CapturaFantasma : MonoBehaviour
     /// Si hay algún fantasma jugable activo. El que se está capturando cuenta hasta que
     /// termina de desaparecer, para que se vea el pulso de la mira.
     /// </summary>
-    private static bool HayFantasmasJugables()
+    public static bool HayFantasmasJugables()
     {
         return Object.FindAnyObjectByType<MovimientoFantasmaB>() != null;
     }

@@ -18,6 +18,9 @@ public class IndicadoresFantasma : MonoBehaviour
     [Tooltip("Separación del indicador respecto al borde de la pantalla.")]
     [SerializeField] private float margen = 110f;
 
+    [Tooltip("Separación respecto al borde superior, para no tapar el HUD (menú, tiempo y contador).")]
+    [SerializeField] private float margenSuperior = 260f;
+
     private readonly List<IndicadorFantasma> indicadores = new List<IndicadorFantasma>();
     private RectTransform zona;
 
@@ -85,10 +88,12 @@ public class IndicadoresFantasma : MonoBehaviour
     /// <summary>Punto del borde de la pantalla (con margen) en esa dirección.</summary>
     private Vector2 PosicionEnBorde(Vector2 direccion)
     {
-        Vector2 limite = zona.rect.size * 0.5f - new Vector2(margen, margen);
+        Vector2 mitad = zona.rect.size * 0.5f;
+        float limiteX = mitad.x - margen;
+        float limiteY = mitad.y - (direccion.y > 0f ? margenSuperior : margen);
 
-        float escalaX = Mathf.Abs(direccion.x) > 0.0001f ? limite.x / Mathf.Abs(direccion.x) : float.MaxValue;
-        float escalaY = Mathf.Abs(direccion.y) > 0.0001f ? limite.y / Mathf.Abs(direccion.y) : float.MaxValue;
+        float escalaX = Mathf.Abs(direccion.x) > 0.0001f ? limiteX / Mathf.Abs(direccion.x) : float.MaxValue;
+        float escalaY = Mathf.Abs(direccion.y) > 0.0001f ? limiteY / Mathf.Abs(direccion.y) : float.MaxValue;
 
         return direccion * Mathf.Min(escalaX, escalaY);
     }
